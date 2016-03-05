@@ -1,0 +1,351 @@
+<?xml version="1.0" standalone="yes" ?>
+<!---->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Link1_dup_dup1_dup>
+            <Attributes>
+                <AttrCEActorActionAlphaEnter>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrCEActorActionAlphaEnter>
+                <AttrCEActorActionAlphaExit>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrCEActorActionAlphaExit>
+                <AttrCEActorActionOmegaEnter>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrCEActorActionOmegaEnter>
+                <AttrCEActorActionOmegaExit>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrCEActorActionOmegaExit>
+                <AttrCEActorBank>
+                    <Data v="00000000-0000-0000-0000-000000000000" t="3" />
+                    <Type v="DataTypeGlobalID" t="3" />
+                </AttrCEActorBank>
+                <AttrCEActorControlFlowEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorControlFlowEnabled>
+                <AttrCEActorControlFlowRate>
+                    <Data v="100.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorControlFlowRate>
+                <AttrCEActorControlFlowRatePerMeter>
+                    <Data v="50.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorControlFlowRatePerMeter>
+                <AttrCEActorControlFlowType>
+                    <Data>
+                        <EnumString v="FlowRateAbsolute" t="3" />
+                        <EnumValue v="0" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrCEActorControlFlowType>
+                <AttrCEActorDelayInDistribution>
+                    <Data>
+                        <!--Constant: [value,,,], Uniform: [min,max,,], Normal: [min,max,mean,std], Triangular: [min,max,mode,], Exponential: [min,max,lambda]-->
+                        <Type v="Constant" t="3" />
+                        <Values v="[0.000000]" t="2" />
+                    </Data>
+                    <Type v="DataTypeDistribution" t="3" />
+                </AttrCEActorDelayInDistribution>
+                <AttrCEActorDelayOutDistribution>
+                    <Data>
+                        <!--Constant: [value,,,], Uniform: [min,max,,], Normal: [min,max,mean,std], Triangular: [min,max,mode,], Exponential: [min,max,lambda]-->
+                        <Type v="Constant" t="3" />
+                        <Values v="[0.000000]" t="2" />
+                    </Data>
+                    <Type v="DataTypeDistribution" t="3" />
+                </AttrCEActorDelayOutDistribution>
+                <AttrCEActorDirection>
+                    <Data>
+                        <EnumString v="DirectionBidirectional" t="3" />
+                        <EnumValue v="2" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrCEActorDirection>
+                <AttrCEActorGateCost>
+                    <Data v="20.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorGateCost>
+                <AttrCEActorGateEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorGateEnabled>
+                <AttrCEActorGateIgnoreOthersWhenWaiting>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorGateIgnoreOthersWhenWaiting>
+                <AttrCEActorGateWaitStyle>
+                    <Data>
+                        <EnumString v="WaitFocus" t="3" />
+                        <EnumValue v="3" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrCEActorGateWaitStyle>
+                <AttrCEActorGoalLinePaddingLength>
+                    <Data v="0.200000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorGoalLinePaddingLength>
+                <AttrCEActorGoalLinePaddingWidth>
+                    <Data v="0.200000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorGoalLinePaddingWidth>
+                <AttrCEActorGoalLineTransposed>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorGoalLineTransposed>
+                <AttrCEActorGoalLineWidthAlpha>
+                    <Data v="0.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorGoalLineWidthAlpha>
+                <AttrCEActorGoalLineWidthOmega>
+                    <Data v="0.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorGoalLineWidthOmega>
+                <AttrCEActorGoalLineWidthType>
+                    <Data>
+                        <EnumString v="ValueProvenanceAutoGenerated" t="3" />
+                        <EnumValue v="0" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrCEActorGoalLineWidthType>
+                <AttrCEActorMarshalEnabled>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorMarshalEnabled>
+                <AttrCEActorPerimeters>
+                    <Data v="[]" t="3" />
+                    <Type v="DataTypeSetGlobalID" t="3" />
+                </AttrCEActorPerimeters>
+                <AttrCEActorPriorityCommitWhenWaiting>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorPriorityCommitWhenWaiting>
+                <AttrCEActorPriorityCost>
+                    <Data v="10.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorPriorityCost>
+                <AttrCEActorPriorityDirection>
+                    <Data>
+                        <EnumString v="DirectionAlphaToOmega" t="3" />
+                        <EnumValue v="0" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrCEActorPriorityDirection>
+                <AttrCEActorPriorityDistance>
+                    <Data v="1.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorPriorityDistance>
+                <AttrCEActorPriorityEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorPriorityEnabled>
+                <AttrCEActorPriorityPrimaryYieldToSecondary>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorPriorityPrimaryYieldToSecondary>
+                <AttrCEActorPrioritySecondaryClearArea>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrCEActorPrioritySecondaryClearArea>
+                <AttrCEActorPrioritySecondsUntilOpen>
+                    <Data v="2.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorPrioritySecondsUntilOpen>
+                <AttrCEActorQueueCostFactor>
+                    <Data v="1.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrCEActorQueueCostFactor>
+                <AttrDrawCEDirection>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawCEDirection>
+                <AttrDrawFlagGate>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawFlagGate>
+                <AttrDrawFlagGoalLine>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawFlagGoalLine>
+                <AttrDrawObstacleMap>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawObstacleMap>
+                <AttrDrawPriorityFlow>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawPriorityFlow>
+                <AttrEnabled>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrEnabled>
+                <AttrNetworkActorDistanceCost>
+                    <Data v="0.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrNetworkActorDistanceCost>
+                <AttrNetworkZonesAsPrimaryMember>
+                    <Data v="[]" t="3" />
+                    <Type v="DataTypeSetGlobalID" t="3" />
+                </AttrNetworkZonesAsPrimaryMember>
+                <AttrObjectColor>
+                    <Data v="[0.900000,0.900000,0.000000,1.000000]" t="2" />
+                    <Type v="DataTypeColor" t="3" />
+                </AttrObjectColor>
+                <AttrSourceObject>
+                    <Data v="00000000-0000-0000-0000-000000000000" t="3" />
+                    <Type v="DataTypeGlobalID" t="3" />
+                </AttrSourceObject>
+                <AttrSurfaceMapResolution>
+                    <Data>
+                        <EnumString v="SurfaceMapResolution10cm" t="3" />
+                        <EnumValue v="2" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrSurfaceMapResolution>
+                <AttrVisible>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrVisible>
+                <AttrWalkableActorLocalAgentRadius>
+                    <Data v="0.250000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrWalkableActorLocalAgentRadius>
+                <AttrWalkableActorLocalAgentRadiusEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrWalkableActorLocalAgentRadiusEnabled>
+                <AttrWalkableActorLocalDirectionBias>
+                    <Data>
+                        <EnumString v="DirectionBiasRightStrong" t="3" />
+                        <EnumValue v="4" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrWalkableActorLocalDirectionBias>
+                <AttrWalkableActorLocalDirectionBiasEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrWalkableActorLocalDirectionBiasEnabled>
+                <AttrWalkableActorLocalMaxSpeedEnabled>
+                    <Data v="0" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrWalkableActorLocalMaxSpeedEnabled>
+                <AttrWalkableActorLocalMaxSpeedFlat>
+                    <Data v="1.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrWalkableActorLocalMaxSpeedFlat>
+                <AttrWalkableActorSurfaceTravel>
+                    <Data>
+                        <EnumString v="Standard" t="3" />
+                        <EnumValue v="0" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrWalkableActorSurfaceTravel>
+            </Attributes>
+            <Body>
+                <Attributes>
+                    <AttrCEActorGoalPointPositions>
+                        <Data v="[1488.554290,5.660681,1126.251838,1476.964915,5.660681,1114.452054,1475.916194,5.660681,1115.672682,1487.505569,5.660681,1127.472467]" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrCEActorGoalPointPositions>
+                    <AttrCEActorGoalVertexIndices>
+                        <Data v="[3,1,0,2]" t="1" />
+                        <Type v="DataTypeVectorInt" t="3" />
+                    </AttrCEActorGoalVertexIndices>
+                </Attributes>
+                <Geometry>
+                    <Faces v="[0,1,3,0,2,3]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[1475.645752,5.650681,1115.681641,1476.955078,5.650681,1114.157715,1487.515381,5.650681,1127.766846,1488.824829,5.650681,1126.242798]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="f58b0550-1359-4c8e-902c-8d9a5da07d3a" t="3" />
+            <ID v="1191" t="1" />
+            <Name v="Link1_dup_dup1_dup" t="3" />
+            <ObjectSubType v="LinkActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Link1_dup_dup1_dup>
+    </Objects>
+    <Settings>
+        <Attributes>
+            <AttrSettingsDebugFolder>
+                <Data v="debug" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsDebugFolder>
+            <AttrSettingsDefaultCameraFOV>
+                <Data v="28.072000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsDefaultCameraFOV>
+            <AttrSettingsDefaultCameraOrientation>
+                <Data v="[-0.707107,0.000000,0.000000,0.707107]" t="2" />
+                <Type v="DataTypeQuat" t="3" />
+            </AttrSettingsDefaultCameraOrientation>
+            <AttrSettingsDefaultCameraPosition>
+                <Data v="[0.000000,100.000000,0.000000]" t="2" />
+                <Type v="DataTypeVec3" t="3" />
+            </AttrSettingsDefaultCameraPosition>
+            <AttrSettingsDumpCostTrees>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpCostTrees>
+            <AttrSettingsDumpSurfaceMaps>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpSurfaceMaps>
+            <AttrSettingsFileName>
+                <Data v="C:/My Documents/Desktop/MassMotion/link for luis.mmxml" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsFileName>
+            <AttrSettingsFrameRate>
+                <Data v="5" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsFrameRate>
+            <AttrSettingsMovementStandard>
+                <Data>
+                    <EnumString v="MovementStandardFruin" t="3" />
+                    <EnumValue v="1" t="1" />
+                </Data>
+                <Type v="DataTypeEnum" t="3" />
+            </AttrSettingsMovementStandard>
+            <AttrSettingsPopulationMultiplier>
+                <Data v="1.000000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsPopulationMultiplier>
+            <AttrSettingsRandomSeed>
+                <Data v="1234" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsRandomSeed>
+            <AttrSettingsSavedViews>
+                <Data v="[]" t="3" />
+                <Type v="DataTypeVectorString" t="3" />
+            </AttrSettingsSavedViews>
+            <AttrSettingsSimTimeRange>
+                <Data>
+                    <BoundedEndTime v="01:00:00" t="3" />
+                    <BoundedStartTime v="00:00:00" t="3" />
+                    <TimeRangeType v="TimeRangeBounded" t="3" />
+                </Data>
+                <Type v="DataTypeTimeRange" t="3" />
+            </AttrSettingsSimTimeRange>
+            <AttrSettingsWorkingPath>
+                <Data v="C:/My Documents/Desktop/MassMotion/" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsWorkingPath>
+            <AttrSettingsXSIExportVersion>
+                <Data v="" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsXSIExportVersion>
+        </Attributes>
+    </Settings>
+</DataRoot>

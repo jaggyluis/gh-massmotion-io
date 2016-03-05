@@ -1,0 +1,98 @@
+<?xml version="1.0" standalone="yes" ?>
+<!---->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Collection>
+            <Attributes>
+                <AttrCollectionBaseMembers>
+                    <Data>
+                        <GlobalIDs v="[3a24f0a1-510b-4414-b91a-01b252081f2b,6800b217-9fda-435c-a45c-df73ffa76b0c,7873cd92-496e-4b6a-b94e-2441de120992]" t="3" />
+                        <WeightedType v="WeightedNone" t="3" />
+                        <Weights v="[0.333333,0.333333,0.333333]" t="2" />
+                    </Data>
+                    <Type v="DataTypeVectorWeightedGlobalID" t="3" />
+                </AttrCollectionBaseMembers>
+                <AttrObjectColor>
+                    <Data v="[0.564706,0.431373,0.666667,1.000000]" t="2" />
+                    <Type v="DataTypeColor" t="3" />
+                </AttrObjectColor>
+            </Attributes>
+            <GlobalID v="a41a5a9d-47cd-4295-b759-8c154e25abd7" t="3" />
+            <ID v="4" t="1" />
+            <Name v="Collection" t="3" />
+            <ObjectSubType v="GroupCollection" t="3" />
+            <ObjectType v="Group" t="3" />
+        </Collection>
+    </Objects>
+    <Settings>
+        <Attributes>
+            <AttrSettingsDebugFolder>
+                <Data v="debug" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsDebugFolder>
+            <AttrSettingsDefaultCameraFOV>
+                <Data v="28.072000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsDefaultCameraFOV>
+            <AttrSettingsDefaultCameraOrientation>
+                <Data v="[-0.707107,0.000000,0.000000,0.707107]" t="2" />
+                <Type v="DataTypeQuat" t="3" />
+            </AttrSettingsDefaultCameraOrientation>
+            <AttrSettingsDefaultCameraPosition>
+                <Data v="[0.000000,100.000000,0.000000]" t="2" />
+                <Type v="DataTypeVec3" t="3" />
+            </AttrSettingsDefaultCameraPosition>
+            <AttrSettingsDumpCostTrees>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpCostTrees>
+            <AttrSettingsDumpSurfaceMaps>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpSurfaceMaps>
+            <AttrSettingsFileName>
+                <Data v="C:/My Documents/_TEMP/Rhino/Grasshopper/MassMotion/test/collection.mmxml" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsFileName>
+            <AttrSettingsFrameRate>
+                <Data v="5" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsFrameRate>
+            <AttrSettingsMovementStandard>
+                <Data>
+                    <EnumString v="MovementStandardFruin" t="3" />
+                    <EnumValue v="1" t="1" />
+                </Data>
+                <Type v="DataTypeEnum" t="3" />
+            </AttrSettingsMovementStandard>
+            <AttrSettingsPopulationMultiplier>
+                <Data v="1.000000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsPopulationMultiplier>
+            <AttrSettingsRandomSeed>
+                <Data v="1234" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsRandomSeed>
+            <AttrSettingsSavedViews>
+                <Data v="[]" t="3" />
+                <Type v="DataTypeVectorString" t="3" />
+            </AttrSettingsSavedViews>
+            <AttrSettingsSimTimeRange>
+                <Data>
+                    <BoundedEndTime v="00:15:00" t="3" />
+                    <BoundedStartTime v="00:00:00" t="3" />
+                    <TimeRangeType v="TimeRangeBounded" t="3" />
+                </Data>
+                <Type v="DataTypeTimeRange" t="3" />
+            </AttrSettingsSimTimeRange>
+            <AttrSettingsWorkingPath>
+                <Data v="C:/My Documents/_TEMP/Rhino/Grasshopper/MassMotion/test/" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsWorkingPath>
+            <AttrSettingsXSIExportVersion>
+                <Data v="" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsXSIExportVersion>
+        </Attributes>
+    </Settings>
+</DataRoot>

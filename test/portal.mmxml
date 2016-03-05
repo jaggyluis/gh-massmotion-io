@@ -1,0 +1,161 @@
+<?xml version="1.0" standalone="yes" ?>
+<!---->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Portal>
+            <Attributes>
+                <AttrDrawFlagGoalLine>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawFlagGoalLine>
+                <AttrDrawStartAngle>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrDrawStartAngle>
+                <AttrEnabled>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrEnabled>
+                <AttrNetworkActorDistanceCost>
+                    <Data v="0.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrNetworkActorDistanceCost>
+                <AttrObjectColor>
+                    <Data v="[0.000000,0.533000,0.000000,1.000000]" t="2" />
+                    <Type v="DataTypeColor" t="3" />
+                </AttrObjectColor>
+                <AttrPortalActionEnter>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrPortalActionEnter>
+                <AttrPortalActionWaypoint>
+                    <Data>
+                        <ActionType v="ActionNone" t="3" />
+                    </Data>
+                    <Type v="DataTypeAction" t="3" />
+                </AttrPortalActionWaypoint>
+                <AttrPortalDistribution>
+                    <Data>
+                        <EnumString v="DistributionAlongLine" t="3" />
+                        <EnumValue v="0" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrPortalDistribution>
+                <AttrPortalNetworkBehavior>
+                    <Data>
+                        <EnumString v="NetworkBehaviorEntranceAndWaypoint" t="3" />
+                        <EnumValue v="2" t="1" />
+                    </Data>
+                    <Type v="DataTypeEnum" t="3" />
+                </AttrPortalNetworkBehavior>
+                <AttrPortalSpawnAngleDegrees>
+                    <Data v="0.000000" t="2" />
+                    <Type v="DataTypeDouble" t="3" />
+                </AttrPortalSpawnAngleDegrees>
+                <AttrSourceObject>
+                    <Data v="00000000-0000-0000-0000-000000000000" t="3" />
+                    <Type v="DataTypeGlobalID" t="3" />
+                </AttrSourceObject>
+                <AttrVisible>
+                    <Data v="1" t="0" />
+                    <Type v="DataTypeBool" t="3" />
+                </AttrVisible>
+            </Attributes>
+            <Body>
+                <Attributes>
+                    <AttrPortalGoalEdgeIndices>
+                        <Data v="[4,0]" t="1" />
+                        <Type v="DataTypeVectorInt" t="3" />
+                    </AttrPortalGoalEdgeIndices>
+                    <AttrPortalGoalPointPositions>
+                        <Data v="[2.300000,0.030000,0.000000,-2.300000,0.030000,0.000000]" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrPortalGoalPointPositions>
+                </Attributes>
+                <Geometry>
+                    <Faces v="[0,1,2,1,2,3]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-2.500000,0.020000,-0.250000,-2.500000,0.020000,0.250000,2.500000,0.020000,-0.250000,2.500000,0.020000,0.250000]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="d4fbf67c-635c-4755-84bb-0b37658a8607" t="3" />
+            <ID v="1" t="1" />
+            <Name v="Portal" t="3" />
+            <ObjectSubType v="PortalActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Portal>
+    </Objects>
+    <Settings>
+        <Attributes>
+            <AttrSettingsDebugFolder>
+                <Data v="debug" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsDebugFolder>
+            <AttrSettingsDefaultCameraFOV>
+                <Data v="28.072000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsDefaultCameraFOV>
+            <AttrSettingsDefaultCameraOrientation>
+                <Data v="[-0.707107,0.000000,0.000000,0.707107]" t="2" />
+                <Type v="DataTypeQuat" t="3" />
+            </AttrSettingsDefaultCameraOrientation>
+            <AttrSettingsDefaultCameraPosition>
+                <Data v="[0.000000,100.000000,0.000000]" t="2" />
+                <Type v="DataTypeVec3" t="3" />
+            </AttrSettingsDefaultCameraPosition>
+            <AttrSettingsDumpCostTrees>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpCostTrees>
+            <AttrSettingsDumpSurfaceMaps>
+                <Data v="0" t="0" />
+                <Type v="DataTypeBool" t="3" />
+            </AttrSettingsDumpSurfaceMaps>
+            <AttrSettingsFileName>
+                <Data v="C:/My Documents/_TEMP/Rhino/Grasshopper/MassMotion/test/portal.mmxml" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsFileName>
+            <AttrSettingsFrameRate>
+                <Data v="5" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsFrameRate>
+            <AttrSettingsMovementStandard>
+                <Data>
+                    <EnumString v="MovementStandardFruin" t="3" />
+                    <EnumValue v="1" t="1" />
+                </Data>
+                <Type v="DataTypeEnum" t="3" />
+            </AttrSettingsMovementStandard>
+            <AttrSettingsPopulationMultiplier>
+                <Data v="1.000000" t="2" />
+                <Type v="DataTypeDouble" t="3" />
+            </AttrSettingsPopulationMultiplier>
+            <AttrSettingsRandomSeed>
+                <Data v="1234" t="1" />
+                <Type v="DataTypeInt" t="3" />
+            </AttrSettingsRandomSeed>
+            <AttrSettingsSavedViews>
+                <Data v="[]" t="3" />
+                <Type v="DataTypeVectorString" t="3" />
+            </AttrSettingsSavedViews>
+            <AttrSettingsSimTimeRange>
+                <Data>
+                    <BoundedEndTime v="00:15:00" t="3" />
+                    <BoundedStartTime v="00:00:00" t="3" />
+                    <TimeRangeType v="TimeRangeBounded" t="3" />
+                </Data>
+                <Type v="DataTypeTimeRange" t="3" />
+            </AttrSettingsSimTimeRange>
+            <AttrSettingsWorkingPath>
+                <Data v="C:/My Documents/_TEMP/Rhino/Grasshopper/MassMotion/test/" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsWorkingPath>
+            <AttrSettingsXSIExportVersion>
+                <Data v="" t="3" />
+                <Type v="DataTypeString" t="3" />
+            </AttrSettingsXSIExportVersion>
+        </Attributes>
+    </Settings>
+</DataRoot>
