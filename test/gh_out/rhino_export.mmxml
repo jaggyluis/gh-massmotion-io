@@ -16,12 +16,12 @@
                     </AttrPortalGoalPointPositions>
                 </Attributes>
                 <Geometry>
-                    <Faces v="[3,1,0,3,0,2,5,3,2,5,2,4]" t="1" />
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
                     <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[1.33316314220428,0.0500000007450581,1.99798011779785,1.33316314220428,0.0500000007450581,1.70566952228546,2.25444507598877,0.0500000007450581,1.99798011779785,2.25444507598877,0.0500000007450581,1.70566952228546,3.17572712898254,0.0500000007450581,1.99798011779785,3.17572712898254,0.0500000007450581,1.70566952228546]" t="2" />
+                    <Vertices v="[-10,0.0500000007450581,10,-10,0.0500000007450581,-10,10,0.0500000007450581,10,10,0.0500000007450581,-10]" t="2" />
                 </Geometry>
             </Body>
-            <GlobalID v="7400694c-8a81-42d8-aeee-053cf8dafba4" t="3" />
+            <GlobalID v="364fcc61-b217-4dc0-9ce8-860d14f89b9e" t="3" />
             <ID v="_temp0" t="1" />
             <Name v="Rhino_Geometry_MeshPortalActor0" t="3" />
             <ObjectSubType v="PortalActor" t="3" />
@@ -41,202 +41,43 @@
                     </AttrPortalGoalPointPositions>
                 </Attributes>
                 <Geometry>
-                    <Faces v="[4,1,0,4,0,3,5,2,1,5,1,4]" t="1" />
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
                     <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[7.12445783615112,0.0500000007450581,-3.76491951942444,7.12445783615112,0.0500000007450581,-4.47331762313843,7.12445783615112,0.0500000007450581,-5.181715965271,7.32100677490234,0.0500000007450581,-3.76491951942444,7.32100677490234,0.0500000007450581,-4.47331762313843,7.32100677490234,0.0500000007450581,-5.181715965271]" t="2" />
+                    <Vertices v="[-10,0.0500000007450581,10,-10,0.0500000007450581,-10,10,0.0500000007450581,10,10,0.0500000007450581,-10]" t="2" />
                 </Geometry>
             </Body>
-            <GlobalID v="ac8414f7-bcb2-462d-9f20-c2ba41c4244e" t="3" />
+            <GlobalID v="cdaecf9c-1175-48e1-8364-b8b73a2cc295" t="3" />
             <ID v="_temp1" t="1" />
             <Name v="Rhino_Geometry_MeshPortalActor1" t="3" />
             <ObjectSubType v="PortalActor" t="3" />
             <ObjectType v="Actor" t="3" />
         </Rhino_Geometry_MeshPortalActor1>
-        <Rhino_Geometry_MeshLinkActor0>
+        <Rhino_Geometry_MeshPortalActor2>
             <Attributes> </Attributes>
             <Body>
                 <Attributes>
-                    <AttrCEActorGoalPointPositions>
-                        <Data v="[5.55302953720093,0.0500000007450581,1.31731390953064,5.55302953720093,0.0500000007450581,-4.67816495895386,6.85063028335571,0.0500000007450581,1.31731390953064,6.85063028335571,0.0500000007450581,-4.67816495895386]" t="2" />
-                        <Type v="DataTypeVectorDouble" t="3" />
-                    </AttrCEActorGoalPointPositions>
-                    <AttrCEActorGoalVertexIndices>
-                        <Data v="[1,3,2,0]" t="1" />
+                    <AttrPortalGoalEdgeIndices>
+                        <Data v="[1,4]" t="1" />
                         <Type v="DataTypeVectorInt" t="3" />
-                    </AttrCEActorGoalVertexIndices>
+                    </AttrPortalGoalEdgeIndices>
+                    <AttrPortalGoalPointPositions>
+                        <Data v="temp" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrPortalGoalPointPositions>
                 </Attributes>
                 <Geometry>
                     <Faces v="[3,1,0,3,0,2]" t="1" />
                     <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[5.55302953720093,0.0500000007450581,1.31731390953064,5.55302953720093,0.0500000007450581,-4.67816495895386,6.85063028335571,0.0500000007450581,1.31731390953064,6.85063028335571,0.0500000007450581,-4.67816495895386]" t="2" />
+                    <Vertices v="[-10,0.0500000007450581,10,-10,0.0500000007450581,-10,10,0.0500000007450581,10,10,0.0500000007450581,-10]" t="2" />
                 </Geometry>
             </Body>
-            <GlobalID v="7718c107-3c57-4850-81a2-fa33a35d8a83" t="3" />
-            <ID v="_temp0" t="1" />
-            <Name v="Rhino_Geometry_MeshLinkActor0" t="3" />
-            <ObjectSubType v="LinkActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshLinkActor0>
-        <Rhino_Geometry_MeshBarrierActor0>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[10,7,6,10,6,8,13,1,0,0,3,13,13,3,11,9,4,7,4,9,12,4,12,5,11,2,5,11,5,12,3,2,11,9,7,10,24,22,20,24,20,21,27,14,15,14,27,17,27,25,17,23,21,18,18,19,26,18,26,23,25,26,19,25,19,16,17,25,16,23,24,21,33,28,30,33,30,32,29,33,32,29,32,31,40,34,38,40,39,35,41,40,38,40,41,39,41,37,39,36,41,38,48,42,46,48,47,43,47,48,46,46,49,47,49,45,47,44,49,46,56,50,54,56,55,51,57,56,54,56,57,55,57,53,55,52,57,54,62,58,60,62,60,63,59,62,63,59,63,61,70,64,68,70,69,65,71,70,68,70,71,69,71,67,69,66,71,68,76,78,72,77,73,78,76,74,75,76,75,77,78,76,77,80,79,83,80,83,84,83,85,84,85,82,84,81,85,83]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[0.79289436340332,0,-1.85105609893799,0.79289436340332,0,-1.5425820350647,2.78854846954346,0,-1.85105609893799,1.79072141647339,0,-1.85105609893799,2.78854846954346,0,1.12478423118591,2.78854846954346,0,-0.363135904073715,0.879049777984619,0,1.12478423118591,1.83379924297333,0,1.12478423118591,0.879049777984619,0,0.727916359901428,2.23464393615723,0,0.727916359901428,1.55684685707092,0,0.727916359901428,2.23464393615723,0,-1.5425820350647,2.23464393615723,0,-0.407332837581635,1.51376914978027,0,-1.5425820350647,0.79289436340332,1.44250416755676,-1.85105609893799,0.79289436340332,1.44250416755676,-1.5425820350647,2.78854846954346,1.44250416755676,-1.85105609893799,1.79072141647339,1.44250416755676,-1.85105609893799,2.78854846954346,1.44250416755676,1.12478423118591,2.78854846954346,1.44250416755676,-0.363135904073715,0.879049777984619,1.44250416755676,1.12478423118591,1.83379924297333,1.44250416755676,1.12478423118591,0.879049777984619,1.44250416755676,0.727916359901428,2.23464393615723,1.44250416755676,0.727916359901428,1.55684685707092,1.44250416755676,0.727916359901428,2.23464393615723,1.44250416755676,-1.5425820350647,2.23464393615723,1.44250416755676,-0.407332837581635,1.51376914978027,1.44250416755676,-1.5425820350647,0.79289436340332,0,-1.85105609893799,0.79289436340332,1.44250416755676,-1.85105609893799,0.79289436340332,0,-1.5425820350647,0.79289436340332,1.44250416755676,-1.5425820350647,0.79289436340332,0.721252083778381,-1.5425820350647,0.79289436340332,0.721252083778381,-1.85105609893799,0.79289436340332,0,-1.5425820350647,0.79289436340332,1.44250416755676,-1.5425820350647,2.23464393615723,0,-1.5425820350647,2.23464393615723,1.44250416755676,-1.5425820350647,1.51376914978027,0,-1.5425820350647,1.51376914978027,1.44250416755676,-1.5425820350647,0.79289436340332,0.721252083778381,-1.5425820350647,2.23464393615723,0.721252083778381,-1.5425820350647,2.23464393615723,0,-1.5425820350647,2.23464393615723,1.44250416755676,-1.5425820350647,2.23464393615723,0,0.727916359901428,2.23464393615723,1.44250416755676,0.727916359901428,2.23464393615723,0,-0.407332837581635,2.23464393615723,1.44250416755676,-0.407332837581635,2.23464393615723,0.721252083778381,-1.5425820350647,2.23464393615723,0.721252083778381,0.727916359901428,2.23464393615723,0,0.727916359901428,2.23464393615723,1.44250416755676,0.727916359901428,0.879049777984619,0,0.727916359901428,0.879049777984619,1.44250416755676,0.727916359901428,1.55684685707092,0,0.727916359901428,1.55684685707092,1.44250416755676,0.727916359901428,2.23464393615723,0.721252083778381,0.727916359901428,0.879049777984619,0.721252083778381,0.727916359901428,0.879049777984619,0,0.727916359901428,0.879049777984619,1.44250416755676,0.727916359901428,0.879049777984619,0,1.12478423118591,0.879049777984619,1.44250416755676,1.12478423118591,0.879049777984619,0.721252083778381,0.727916359901428,0.879049777984619,0.721252083778381,1.12478423118591,0.879049777984619,0,1.12478423118591,0.879049777984619,1.44250416755676,1.12478423118591,2.78854846954346,0,1.12478423118591,2.78854846954346,1.44250416755676,1.12478423118591,1.83379924297333,0,1.12478423118591,1.83379924297333,1.44250416755676,1.12478423118591,0.879049777984619,0.721252083778381,1.12478423118591,2.78854846954346,0.721252083778381,1.12478423118591,2.78854846954346,0,1.12478423118591,2.78854846954346,1.44250416755676,1.12478423118591,2.78854846954346,0,-1.85105609893799,2.78854846954346,1.44250416755676,-1.85105609893799,2.78854846954346,0,-0.363135904073715,2.78854846954346,1.44250416755676,-0.363135904073715,2.78854846954346,0.721252083778381,1.12478423118591,2.78854846954346,0,-1.85105609893799,2.78854846954346,1.44250416755676,-1.85105609893799,0.79289436340332,0,-1.85105609893799,0.79289436340332,1.44250416755676,-1.85105609893799,1.79072141647339,0,-1.85105609893799,1.79072141647339,1.44250416755676,-1.85105609893799,0.79289436340332,0.721252083778381,-1.85105609893799]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="5080f60a-1717-4587-99ec-79f198fc01fb" t="3" />
-            <ID v="_temp0" t="1" />
-            <Name v="Rhino_Geometry_MeshBarrierActor0" t="3" />
-            <ObjectSubType v="BarrierActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshBarrierActor0>
-        <Rhino_Geometry_MeshBarrierActor1>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[9,1,0,3,2,7,0,3,9,9,3,7,7,2,5,7,5,8,5,4,8,6,8,4,19,10,11,13,17,12,10,19,13,19,17,13,17,18,15,17,15,12,15,18,14,16,14,18,25,20,22,25,22,24,21,25,24,21,24,23,32,26,30,32,31,27,33,32,30,32,33,31,33,29,31,28,33,30,40,34,38,40,39,35,41,40,38,40,41,39,41,37,39,36,41,38,46,42,44,46,44,47,43,46,47,43,47,45,52,54,48,53,49,54,50,51,53,50,53,52,54,52,53,56,55,59,56,59,60,59,61,60,61,58,60,57,61,59]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[1.47863781452179,1.44250416755676,0.727916359901428,1.94781339168549,1.44250416755676,0.727916359901428,1.47863781452179,1.44250416755676,-1.5425820350647,1.47863781452179,1.44250416755676,-0.407332837581635,4.29721355438232,1.44250416755676,-1.5425820350647,2.88792562484741,1.44250416755676,-1.5425820350647,4.29721355438232,1.44250416755676,-0.931936085224152,1.94781339168549,1.44250416755676,-0.931936085224152,3.12251353263855,1.44250416755676,-0.931936085224152,1.94781339168549,1.44250416755676,-0.102009885013103,1.47863781452179,2.88500833511353,0.727916359901428,1.94781339168549,2.88500833511353,0.727916359901428,1.47863781452179,2.88500833511353,-1.5425820350647,1.47863781452179,2.88500833511353,-0.407332837581635,4.29721355438232,2.88500833511353,-1.5425820350647,2.88792562484741,2.88500833511353,-1.5425820350647,4.29721355438232,2.88500833511353,-0.931936085224152,1.94781339168549,2.88500833511353,-0.931936085224152,3.12251353263855,2.88500833511353,-0.931936085224152,1.94781339168549,2.88500833511353,-0.102009885013103,1.47863781452179,1.44250416755676,0.727916359901428,1.47863781452179,2.88500833511353,0.727916359901428,1.94781339168549,1.44250416755676,0.727916359901428,1.94781339168549,2.88500833511353,0.727916359901428,1.94781339168549,2.16375613212585,0.727916359901428,1.47863781452179,2.16375613212585,0.727916359901428,1.94781339168549,1.44250416755676,0.727916359901428,1.94781339168549,2.88500833511353,0.727916359901428,1.94781339168549,1.44250416755676,-0.931936085224152,1.94781339168549,2.88500833511353,-0.931936085224152,1.94781339168549,1.44250416755676,-0.102009885013103,1.94781339168549,2.88500833511353,-0.102009885013103,1.94781339168549,2.16375613212585,0.727916359901428,1.94781339168549,2.16375613212585,-0.931936085224152,1.94781339168549,1.44250416755676,-0.931936085224152,1.94781339168549,2.88500833511353,-0.931936085224152,4.29721355438232,1.44250416755676,-0.931936085224152,4.29721355438232,2.88500833511353,-0.931936085224152,3.12251353263855,1.44250416755676,-0.931936085224152,3.12251353263855,2.88500833511353,-0.931936085224152,1.94781339168549,2.16375613212585,-0.931936085224152,4.29721355438232,2.16375613212585,-0.931936085224152,4.29721355438232,1.44250416755676,-0.931936085224152,4.29721355438232,2.88500833511353,-0.931936085224152,4.29721355438232,1.44250416755676,-1.5425820350647,4.29721355438232,2.88500833511353,-1.5425820350647,4.29721355438232,2.16375613212585,-0.931936085224152,4.29721355438232,2.16375613212585,-1.5425820350647,4.29721355438232,1.44250416755676,-1.5425820350647,4.29721355438232,2.88500833511353,-1.5425820350647,1.47863781452179,1.44250416755676,-1.5425820350647,1.47863781452179,2.88500833511353,-1.5425820350647,2.88792562484741,1.44250416755676,-1.5425820350647,2.88792562484741,2.88500833511353,-1.5425820350647,4.29721355438232,2.16375613212585,-1.5425820350647,1.47863781452179,1.44250416755676,-1.5425820350647,1.47863781452179,2.88500833511353,-1.5425820350647,1.47863781452179,1.44250416755676,0.727916359901428,1.47863781452179,2.88500833511353,0.727916359901428,1.47863781452179,1.44250416755676,-0.407332837581635,1.47863781452179,2.88500833511353,-0.407332837581635,1.47863781452179,2.16375613212585,0.727916359901428]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="9a2f3237-941a-4a10-abb3-3a1c04f599f7" t="3" />
-            <ID v="_temp1" t="1" />
-            <Name v="Rhino_Geometry_MeshBarrierActor1" t="3" />
-            <ObjectSubType v="BarrierActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshBarrierActor1>
-        <Rhino_Geometry_MeshFloorActor0>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[3,1,0,3,0,2]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[3.08526468276978,1.44250416755676,2.42810249328613,3.08526468276978,1.44250416755676,-2.39996266365051,4.29721355438232,1.44250416755676,2.42810249328613,4.29721355438232,1.44250416755676,-2.39996266365051]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="e7a06036-ef42-452a-b695-51713efd22d7" t="3" />
-            <ID v="_temp0" t="1" />
-            <Name v="Rhino_Geometry_MeshFloorActor0" t="3" />
-            <ObjectSubType v="FloorActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshFloorActor0>
-        <Rhino_Geometry_MeshFloorActor1>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[3,1,0,3,0,2]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[-0.0987863913178444,1.44250416755676,2.42810249328613,-0.0987863913178444,1.44250416755676,-2.39996266365051,3.08526468276978,1.44250416755676,2.42810249328613,3.08526468276978,1.44250416755676,-2.39996266365051]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="811f9cda-6493-4f54-839f-a6df26e51594" t="3" />
-            <ID v="_temp1" t="1" />
-            <Name v="Rhino_Geometry_MeshFloorActor1" t="3" />
-            <ObjectSubType v="FloorActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshFloorActor1>
-        <Rhino_Geometry_MeshFloorActor2>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[3,1,0,3,0,2]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[6.24707841873169,0,2.42810249328613,6.24707841873169,0,-5.64268207550049,7.93734502792358,0,2.42810249328613,7.93734502792358,0,-5.64268207550049]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="1e918a6e-2804-43c8-b4ef-f4676d4751a9" t="3" />
+            <GlobalID v="9bacaa71-f985-418f-b045-e6dcfdf4bc32" t="3" />
             <ID v="_temp2" t="1" />
-            <Name v="Rhino_Geometry_MeshFloorActor2" t="3" />
-            <ObjectSubType v="FloorActor" t="3" />
+            <Name v="Rhino_Geometry_MeshPortalActor2" t="3" />
+            <ObjectSubType v="PortalActor" t="3" />
             <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshFloorActor2>
-        <Rhino_Geometry_MeshFloorActor3>
-            <Attributes> </Attributes>
-            <Body>
-                <Geometry>
-                    <Faces v="[3,1,0,3,0,2]" t="1" />
-                    <GeometryType v="MeshGeometry" t="3" />
-                    <Vertices v="[-0.0987863913178444,0,2.42810249328613,-0.0987863913178444,0,-5.64268207550049,6.24707841873169,0,2.42810249328613,6.24707841873169,0,-5.64268207550049]" t="2" />
-                </Geometry>
-            </Body>
-            <GlobalID v="2b258d84-7bb4-4305-beec-c28d19be5078" t="3" />
-            <ID v="_temp3" t="1" />
-            <Name v="Rhino_Geometry_MeshFloorActor3" t="3" />
-            <ObjectSubType v="FloorActor" t="3" />
-            <ObjectType v="Actor" t="3" />
-        </Rhino_Geometry_MeshFloorActor3>
-        <FLOOR_0_WALLS>
-            <Attributes>
-                <AttrCollectionBaseMembers>
-                    <Data>
-                        <GlobalIDs v="[5080f60a-1717-4587-99ec-79f198fc01fb]" t="3" />
-                        <WeightedType v="WeightedNone" t="3" />
-                        <Weights v="[1]" t="2" />
-                    </Data>
-                    <Type v="DataTypeVectorWeightedGlobalID" t="3" />
-                </AttrCollectionBaseMembers>
-            </Attributes>
-            <GlobalID v="61d0028b-7356-47fc-89b3-eea9e8d4aa2f" t="3" />
-            <ID v="_tempFLOOR_0_WALLS" t="1" />
-            <Name v="FLOOR_0_WALLS" t="3" />
-            <ObjectSubType v="GroupCollection" t="3" />
-            <ObjectType v="Group" t="3" />
-        </FLOOR_0_WALLS>
-        <FLOOR_1_WALLS>
-            <Attributes>
-                <AttrCollectionBaseMembers>
-                    <Data>
-                        <GlobalIDs v="[9a2f3237-941a-4a10-abb3-3a1c04f599f7]" t="3" />
-                        <WeightedType v="WeightedNone" t="3" />
-                        <Weights v="[1]" t="2" />
-                    </Data>
-                    <Type v="DataTypeVectorWeightedGlobalID" t="3" />
-                </AttrCollectionBaseMembers>
-            </Attributes>
-            <GlobalID v="f5fd87b0-3238-434d-b2f3-8220f200cbef" t="3" />
-            <ID v="_tempFLOOR_1_WALLS" t="1" />
-            <Name v="FLOOR_1_WALLS" t="3" />
-            <ObjectSubType v="GroupCollection" t="3" />
-            <ObjectType v="Group" t="3" />
-        </FLOOR_1_WALLS>
-        <FLOOR_1>
-            <Attributes>
-                <AttrCollectionBaseMembers>
-                    <Data>
-                        <GlobalIDs v="[e7a06036-ef42-452a-b695-51713efd22d7,811f9cda-6493-4f54-839f-a6df26e51594]" t="3" />
-                        <WeightedType v="WeightedNone" t="3" />
-                        <Weights v="[0.5,0.5]" t="2" />
-                    </Data>
-                    <Type v="DataTypeVectorWeightedGlobalID" t="3" />
-                </AttrCollectionBaseMembers>
-            </Attributes>
-            <GlobalID v="4ae1255c-398f-47c0-b4b1-983d8b58ae04" t="3" />
-            <ID v="_tempFLOOR_1" t="1" />
-            <Name v="FLOOR_1" t="3" />
-            <ObjectSubType v="GroupCollection" t="3" />
-            <ObjectType v="Group" t="3" />
-        </FLOOR_1>
-        <FLOOR_0>
-            <Attributes>
-                <AttrCollectionBaseMembers>
-                    <Data>
-                        <GlobalIDs v="[1e918a6e-2804-43c8-b4ef-f4676d4751a9,2b258d84-7bb4-4305-beec-c28d19be5078]" t="3" />
-                        <WeightedType v="WeightedNone" t="3" />
-                        <Weights v="[0.5,0.5]" t="2" />
-                    </Data>
-                    <Type v="DataTypeVectorWeightedGlobalID" t="3" />
-                </AttrCollectionBaseMembers>
-            </Attributes>
-            <GlobalID v="0a77f4de-a29e-4119-9240-3b4d94684242" t="3" />
-            <ID v="_tempFLOOR_0" t="1" />
-            <Name v="FLOOR_0" t="3" />
-            <ObjectSubType v="GroupCollection" t="3" />
-            <ObjectType v="Group" t="3" />
-        </FLOOR_0>
-        <Journey:2-1><Attributes><AttrEnabled><Data v="1"  t="0" ></Data><Type v="DataTypeBool"  t="3" ></Type></AttrEnabled><AttrEventBirthAction><Data><ActionType v="ActionNone"  t="3" ></ActionType></Data><Type v="DataTypeAction"  t="3" ></Type></AttrEventBirthAction><AttrEventBirthProfile><Data v="00000000-0000-0000-0000-000000000000"  t="1" ></Data><Type v="DataTypeGlobalID"  t="3" ></Type></AttrEventBirthProfile><AttrEventDemandCurveData><Data v="[]"  t="1" ></Data><Type v="DataTypeVectorDouble"  t="3" ></Type></AttrEventDemandCurveData><AttrEventDemandType><Data><EnumString v="DemandDistribution"  t="3" ></EnumString><EnumValue v="2"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDemandType><AttrEventDestinationType><Data><EnumString v="DestinationAssigned"  t="3" ></EnumString><EnumValue v="1"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDestinationType><AttrEventDurationDistribution><Data><Type v="Uniform"  t="3" ></Type><Values v="[600,2400]"  t="2" ></Values></Data><Type v="DataTypeDistribution"  t="3" ></Type></AttrEventDurationDistribution><AttrEventMultiDestination><Data><GlobalIDs v="[ac8414f7-bcb2-462d-9f20-c2ba41c4244e]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiDestination><AttrEventMultiOrigin><Data><GlobalIDs v="[7400694c-8a81-42d8-aeee-053cf8dafba4]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiOrigin><AttrEventPopulation><Data v="50"  t="1" ></Data><Type v="DataTypeInt"  t="3" ></Type></AttrEventPopulation><AttrEventStartTime><Data><GlobalID v="00000000-0000-0000-0000-000000000000"  t="3" ></GlobalID><TimeInSeconds v="00:10:00"  t="3" ></TimeInSeconds><TimeType v="TimeSimulationStart"  t="3" ></TimeType></Data><Type v="DataTypeTimeReference"  t="3" ></Type></AttrEventStartTime></Attributes><GlobalID v="d282e66b-ee4d-43bb-9459-f8ae10e04b6d" t="3" /><ID v="_tempJourney: 2-1" t="1" /><Name v="Journey:2-1" t="3" /><ObjectSubType v="EventJourney" t="3" /><ObjectType v="Event" t="3" /></Journey:2-1>
-        <Journey:1-2><Attributes><AttrEnabled><Data v="1"  t="0" ></Data><Type v="DataTypeBool"  t="3" ></Type></AttrEnabled><AttrEventBirthAction><Data><ActionType v="ActionNone"  t="3" ></ActionType></Data><Type v="DataTypeAction"  t="3" ></Type></AttrEventBirthAction><AttrEventBirthProfile><Data v="00000000-0000-0000-0000-000000000000"  t="1" ></Data><Type v="DataTypeGlobalID"  t="3" ></Type></AttrEventBirthProfile><AttrEventDemandCurveData><Data v="[]"  t="1" ></Data><Type v="DataTypeVectorDouble"  t="3" ></Type></AttrEventDemandCurveData><AttrEventDemandType><Data><EnumString v="DemandDistribution"  t="3" ></EnumString><EnumValue v="2"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDemandType><AttrEventDestinationType><Data><EnumString v="DestinationAssigned"  t="3" ></EnumString><EnumValue v="1"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDestinationType><AttrEventDurationDistribution><Data><Type v="Uniform"  t="3" ></Type><Values v="[0,2400]"  t="2" ></Values></Data><Type v="DataTypeDistribution"  t="3" ></Type></AttrEventDurationDistribution><AttrEventMultiDestination><Data><GlobalIDs v="[7400694c-8a81-42d8-aeee-053cf8dafba4]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiDestination><AttrEventMultiOrigin><Data><GlobalIDs v="[ac8414f7-bcb2-462d-9f20-c2ba41c4244e]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiOrigin><AttrEventPopulation><Data v="100"  t="1" ></Data><Type v="DataTypeInt"  t="3" ></Type></AttrEventPopulation><AttrEventStartTime><Data><GlobalID v="00000000-0000-0000-0000-000000000000"  t="3" ></GlobalID><TimeInSeconds v="00:00:00"  t="3" ></TimeInSeconds><TimeType v="TimeSimulationStart"  t="3" ></TimeType></Data><Type v="DataTypeTimeReference"  t="3" ></Type></AttrEventStartTime></Attributes><GlobalID v="5e44870a-1900-45d1-b8da-e5856105c53a" t="3" /><ID v="_tempJourney: 1-2" t="1" /><Name v="Journey:1-2" t="3" /><ObjectSubType v="EventJourney" t="3" /><ObjectType v="Event" t="3" /></Journey:1-2>
+        </Rhino_Geometry_MeshPortalActor2>
+        <Circulate:2-1><Attributes><AttrCirculateEventCirculatePortals><Data><GlobalIDs v="[9bacaa71-f985-418f-b045-e6dcfdf4bc32,cdaecf9c-1175-48e1-8364-b8b73a2cc295,364fcc61-b217-4dc0-9ce8-860d14f89b9e]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[0.3333333,0.3333333,0.3333333]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrCirculateEventCirculatePortals><AttrCirculateEventCirculateWaitOnStart><Data v="0"  t="0" ></Data><Type v="DataTypeBool"  t="3" ></Type></AttrCirculateEventCirculateWaitOnStart><AttrCirculateEventCirculateWaitStyle><Data><EnumString v="WaitSpreadOut"  t="3" ></EnumString><EnumValue v="2"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrCirculateEventCirculateWaitStyle><AttrCirculateEventLifetimeCountDistribution><Data><Type v="Uniform"  t="3" ></Type><Values v="[0.000000,10.000000]"  t="2" ></Values></Data><Type v="DataTypeDistribution"  t="3" ></Type></AttrCirculateEventLifetimeCountDistribution><AttrCirculateEventLifetimeDurationDistribution><Data><Type v="Uniform"  t="3" ></Type><Values v="[240,600]"  t="2" ></Values></Data><Type v="DataTypeDistribution"  t="3" ></Type></AttrCirculateEventLifetimeDurationDistribution><AttrEventCirculateLifetimeEndTime><Data><GlobalID v="00000000-0000-0000-0000-000000000000"  t="3" ></GlobalID><TimeInSeconds v="00:10:00"  t="3" ></TimeInSeconds><TimeType v="TimeSimulationStart"  t="3" ></TimeType></Data><Type v="DataTypeTimeReference"  t="3" ></Type></AttrEventCirculateLifetimeEndTime><AttrCirculateEventLifetimeType><Data><EnumString v="LifetimeForever"  t="3" ></EnumString><EnumValue v="0"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrCirculateEventLifetimeType><AttrCirculateEventLifetimeWaitAfterCount><Data v="0"  t="0" ></Data><Type v="DataTypeBool"  t="3" ></Type></AttrCirculateEventLifetimeWaitAfterCount><AttrEnabled><Data v="1"  t="0" ></Data><Type v="DataTypeBool"  t="3" ></Type></AttrEnabled><AttrEventBirthAction><Data><ActionType v="ActionNone"  t="3" ></ActionType></Data><Type v="DataTypeAction"  t="3" ></Type></AttrEventBirthAction><AttrEventBirthProfile><Data v="00000000-0000-0000-0000-000000000000"  t="1" ></Data><Type v="DataTypeGlobalID"  t="3" ></Type></AttrEventBirthProfile><AttrEventDemandCurveData><Data v="[]"  t="1" ></Data><Type v="DataTypeVectorDouble"  t="3" ></Type></AttrEventDemandCurveData><AttrEventDemandType><Data><EnumString v="DemandDistribution"  t="3" ></EnumString><EnumValue v="2"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDemandType><AttrEventDestinationType><Data><EnumString v="DestinationAssigned"  t="3" ></EnumString><EnumValue v="1"  t="1" ></EnumValue></Data><Type v="DataTypeEnum"  t="3" ></Type></AttrEventDestinationType><AttrEventDurationDistribution><Data><Type v="Uniform"  t="3" ></Type><Values v="[0,2400]"  t="2" ></Values></Data><Type v="DataTypeDistribution"  t="3" ></Type></AttrEventDurationDistribution><AttrEventMultiDestination><Data><GlobalIDs v="[f30aafff-481e-4063-add5-16eaea60366e]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[1]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiDestination><AttrEventMultiOrigin><Data><GlobalIDs v="[7476452e-2104-494e-9209-afbc7adadaaa,8c5d9afd-b8d9-4803-b95f-c9dbcbb77f1d,237ec335-9f8d-4a05-949d-07d3f10f582e]"  t="3" ></GlobalIDs><WeightedType v="WeightedNone"  t="3" ></WeightedType><Weights v="[0.3333333,0.3333333,0.3333333]"  t="2" ></Weights></Data><Type v="DataTypeVectorWeightedGlobalID"  t="3" ></Type></AttrEventMultiOrigin><AttrEventPopulation><Data v="50"  t="1" ></Data><Type v="DataTypeInt"  t="3" ></Type></AttrEventPopulation><AttrEventStartTime><Data><GlobalID v="00000000-0000-0000-0000-000000000000"  t="3" ></GlobalID><TimeInSeconds v="00:00:00"  t="3" ></TimeInSeconds><TimeType v="TimeSimulationStart"  t="3" ></TimeType></Data><Type v="DataTypeTimeReference"  t="3" ></Type></AttrEventStartTime></Attributes><GlobalID v="2fcd8716-fd88-453a-86e7-608963b3c9b4" t="3" /><ID v="_tempCirculate: 2-1" t="1" /><Name v="Circulate:2-1" t="3" /><ObjectSubType v="EventCirculate" t="3" /><ObjectType v="Event" t="3" /></Circulate:2-1>
     </Objects>
     <Settings>
         <Attributes>
