@@ -1,2 +1,4 @@
 
 -bug: links not importing correctly sometimes
+-fix dwellType on circulate + create typehints
+-fir simType on .mmxml export
