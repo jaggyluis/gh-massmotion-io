@@ -51,6 +51,7 @@
       <HintPath>C:\Program Files (x86)\Grasshopper for Rhino 5\GH_IO.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MMBuilderComponent.cs" />

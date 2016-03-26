@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Script written by <Luis Jaggy>-->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Rhino_Geometry_MeshPortalActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Attributes>
+                    <AttrPortalGoalEdgeIndices>
+                        <Data v="[1,4]" t="1" />
+                        <Type v="DataTypeVectorInt" t="3" />
+                    </AttrPortalGoalEdgeIndices>
+                    <AttrPortalGoalPointPositions>
+                        <Data v="temp" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrPortalGoalPointPositions>
+                </Attributes>
+                <Geometry>
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-10,0.0500000007450581,10,-10,0.0500000007450581,-10,10,0.0500000007450581,10,10,0.0500000007450581,-10]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="2d337c3f-7a3a-4ce5-89f9-62338c46f033" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_MeshPortalActor0" t="3" />
+            <ObjectSubType v="PortalActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_MeshPortalActor0>
+        <Rhino_Geometry_MeshLinkActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Attributes>
+                    <AttrCEActorGoalPointPositions>
+                        <Data v="[-10,0.100000001490116,10,-10,0.100000001490116,-10,10,0.100000001490116,10,10,0.100000001490116,-10]" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrCEActorGoalPointPositions>
+                    <AttrCEActorGoalVertexIndices>
+                        <Data v="[1,3,2,0]" t="1" />
+                        <Type v="DataTypeVectorInt" t="3" />
+                    </AttrCEActorGoalVertexIndices>
+                </Attributes>
+                <Geometry>
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-10,0.100000001490116,10,-10,0.100000001490116,-10,10,0.100000001490116,10,10,0.100000001490116,-10]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="93665708-7b55-4e44-a775-20e86f0d447b" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_MeshLinkActor0" t="3" />
+            <ObjectSubType v="LinkActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_MeshLinkActor0>
+        <Rhino_Geometry_PolylinePathActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Geometry>
+                    <CurveData>
+                        <RawPoints v="[0.5,0,-0.5,0.5,1,-0.5]" t="2" />
+                    </CurveData>
+                    <EdgeRadius v="0.050000" t="2" />
+                    <GeometryType v="PolylineGeometry" t="3" />
+                    <VertexRadius v="0.100000" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="8a9646fd-316d-4b5d-8710-fda4008a7930" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_PolylinePathActor0" t="3" />
+            <ObjectSubType v="PathActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_PolylinePathActor0>
+        <Rhino_Geometry_MeshBarrierActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Geometry>
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-10,0.100000001490116,10,-10,0.100000001490116,-10,10,0.100000001490116,10,10,0.100000001490116,-10]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="dd02db38-2243-479b-8389-adb7fec57d4a" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_MeshBarrierActor0" t="3" />
+            <ObjectSubType v="BarrierActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_MeshBarrierActor0>
+        <Rhino_Geometry_MeshFloorActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Geometry>
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-10,0.100000001490116,10,-10,0.100000001490116,-10,10,0.100000001490116,10,10,0.100000001490116,-10]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="0d5cd3b4-1bc0-4585-99e7-a5262c03a7c3" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_MeshFloorActor0" t="3" />
+            <ObjectSubType v="FloorActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_MeshFloorActor0>
+        <Rhino_Geometry_MeshVisOnlyActor0>
+            <Attributes> </Attributes>
+            <Body>
+                <Geometry>
+                    <Faces v="[3,1,0,3,0,2]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-10,0.100000001490116,10,-10,0.100000001490116,-10,10,0.100000001490116,10,10,0.100000001490116,-10]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="62497faa-4d2f-4243-ac62-149bc0533eb5" t="3" />
+            <ID v="_temp0" t="1" />
+            <Name v="Rhino_Geometry_MeshVisOnlyActor0" t="3" />
+            <ObjectSubType v="VisOnlyActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Rhino_Geometry_MeshVisOnlyActor0>
+    </Objects>
+    <Settings>
+        <Attributes> </Attributes>
+    </Settings>
+</DataRoot>

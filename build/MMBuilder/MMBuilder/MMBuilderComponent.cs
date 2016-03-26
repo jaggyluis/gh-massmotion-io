@@ -5,16 +5,19 @@ using System.Linq;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using System.IO;
+using Grasshopper.Kernel.Types;
+using Grasshopper.Kernel.Data;
 
 namespace MMBuilder
 {
-    public class MMBuilderComponent : GH_Component
+    public class MMExport : GH_Component
     {
         /// <summary>
         /// globals
         /// </summary>
-        private List<string> collectionList;
-        private List<string> journeyList;
+        private List<string> collectionList = new List<string>();
+        private List<string> journeyList  = new List<string>();
         private Dictionary<string, List<string>> collectionDict;
         private Dictionary<string, string> journeyDict;
 
@@ -25,7 +28,7 @@ namespace MMBuilder
         /// Subcategory the panel. If you use non-existing tab or panel names, 
         /// new tabs/panels will automatically be created.
         /// </summary>
-        public MMBuilderComponent()
+        public MMExport()
           : base("MMBuilder", "MMB",
               "temporary description",
               "Circulation Analysis", "Mass Motion")
@@ -35,9 +38,26 @@ namespace MMBuilder
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddBooleanParameter("run", "R", "Export geometry to Mass Motion. If set to True, this component will auto-update", GH_ParamAccess.item);
+            pManager.AddMeshParameter("Floors", "Floors", "Floor Geometry to export", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("Barriers", "Barriers", "Barrier Geometry to export", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("Links", "Links", "Link geometry to export", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("Portals", "Portals", "Portal geometry to export", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("Geometry", "Geometry", " Reference geometry to export", GH_ParamAccess.tree);
+            pManager.AddCurveParameter("Paths", "Paths", "Path geometry to export", GH_ParamAccess.tree);
+
+            pManager.AddTextParameter("Collections", "Collections", "MMCollection objects to export", GH_ParamAccess.tree);
+            pManager.AddTextParameter("Journeys", "Journeys", "MMJourney objects to export", GH_ParamAccess.tree);
+
+            pManager.AddTextParameter("FilePath", "FilePath", "Directory for .mmxml export", GH_ParamAccess.item);
+            pManager.AddTextParameter("FileName", "FileName", "Name of file to export", GH_ParamAccess.item);
+
+            pManager.AddBooleanParameter("Run",
+                "Run",
+                "Toggle for export. If set to True, the exported file will auti-update",
+                GH_ParamAccess.item);
+
         }
 
         /// <summary>
@@ -45,7 +65,7 @@ namespace MMBuilder
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddBooleanParameter("didRun", "O", "new file directory", GH_ParamAccess.item);
+            pManager.AddTextParameter("File", "File", "new file directory", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -55,25 +75,93 @@ namespace MMBuilder
         /// to store data in output parameters.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            /*
-            List<Rhino.Geometry.Mesh> floorList = floors.AllData();
-            List<Rhino.Geometry.Mesh> barrierList = barriers.AllData();
-            List<Rhino.Geometry.Polyline> pathList = paths.AllData();
-            List<Rhino.Geometry.Mesh> linkList = links.AllData();
-            List<Rhino.Geometry.Mesh> portalList = portals.AllData();
-            List<Rhino.Geometry.Mesh> geometryList = geometry.AllData();
-            collectionList = collections.AllData();
-            journeyList = journeys.AllData();
+
+            string simTime = null; // simtime to be implemented
+            string fileName = null;
+            string filePath = null;
+            bool run = false;
+
+            GH_Structure<GH_Mesh> FloorTree= new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Mesh> BarrierTree = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Mesh> LinkTree = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Mesh> PortalTree = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Mesh> GeomTree = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Curve> PathTree = new GH_Structure<GH_Curve>();
+            GH_Structure<GH_String> CollectionTree = new GH_Structure<GH_String>();
+            GH_Structure<GH_String> JourneyTree = new GH_Structure<GH_String>();
+
+            DA.GetDataTree("Floors", out FloorTree);
+            DA.GetDataTree("Barriers", out BarrierTree);
+            DA.GetDataTree("Links", out LinkTree);
+            DA.GetDataTree("Portals", out PortalTree);
+            DA.GetDataTree("Geometry", out GeomTree);
+            DA.GetDataTree("Paths", out PathTree);
+            DA.GetDataTree("Journeys", out JourneyTree);
+            DA.GetDataTree("Collections", out CollectionTree);
+
+            List<Mesh> floorList = new List<Mesh>();
+            List<Mesh> barrierList = new List<Mesh>();
+            List<Mesh> linkList = new List<Mesh>();
+            List<Mesh> portalList = new List<Mesh>();
+            List<Mesh> geometryList = new List<Mesh>();
+            List<Polyline> pathList = new List<Polyline>();
+
+            foreach (GH_Mesh msh in FloorTree.AllData(true))
+            {
+                floorList.Add(msh.Value);
+            }
+            foreach (GH_Mesh msh in BarrierTree.AllData(true))
+            {
+                barrierList.Add(msh.Value);
+            }
+            foreach (GH_Mesh msh in LinkTree.AllData(true))
+            {
+                linkList.Add(msh.Value);
+            }
+            foreach (GH_Mesh msh in PortalTree.AllData(true))
+            {
+                portalList.Add(msh.Value);
+            }
+            foreach (GH_Mesh msh in GeomTree.AllData(true))
+            {
+                geometryList.Add(msh.Value);
+            }
+            foreach (GH_Curve crv in PathTree.AllData(true))
+            {
+                Polyline pline;
+                if(crv.Value.TryGetPolyline(out pline))
+                {
+                    pathList.Add(pline);
+                }
+
+            }
+            foreach (GH_String str in CollectionTree.AllData(true))
+            {
+                if (str.Value != null)
+                {
+                    collectionList.Add(str.Value);
+                } 
+                
+            }
+            foreach (GH_String str in JourneyTree.AllData(true))
+            {
+                if (str.Value != null)
+                {
+                    journeyList.Add(str.Value);
+                }
+            }
+
+
             collectionDict = new Dictionary<string, List<string>>();
             journeyDict = new Dictionary<string, string>();
-            */
 
-
-
-            if (run && fileName != null)
+            if (!DA.GetData(8, ref filePath)) return;
+            if (!DA.GetData(9, ref fileName)) return;
+            if (!DA.GetData(10, ref run)) return;
+            if (run && (fileName != null))
             {
                 string pathString = System.IO.Path.Combine(filePath, "gh_out");
-                System.IO.Directory.CreateDirectory(pathString);
+                Directory.CreateDirectory(pathString);
                 string path = pathString + "//" + fileName + ".mmxml";
 
                 using (FileStream filestream = new FileStream(path, FileMode.Create))
@@ -174,8 +262,9 @@ namespace MMBuilder
                     writer.WriteEndElement();
                     writer.WriteEndDocument();
 
-                    //Print("File written as " + path);
+                    string res = "File written as " + path;
                     //System.Diagnostics.Process.Start("explorer.exe", pathString);
+                    DA.SetData("File", res);
 
                 }
             }
@@ -208,7 +297,7 @@ namespace MMBuilder
         /// <summary>
         /// Utility methods for main component run
         /// </summary>
-        private void UpdateCollections(Rhino.Geometry.GeometryBase geo, string id)
+        private void UpdateCollections(GeometryBase geo, string id)
           {
             foreach ( string collection in collectionList)
             {
@@ -223,7 +312,7 @@ namespace MMBuilder
         }
             }
           }
-          private void UpdateJourneys(Rhino.Geometry.GeometryBase geo, string id)
+          private void UpdateJourneys(GeometryBase geo, string id)
         {
             foreach (string journey in journeyList)
             {
@@ -343,7 +432,7 @@ namespace MMBuilder
         }
 
         // method to write the geometry element of a mesh
-        public void WriteMeshGeometry(Rhino.Geometry.Mesh msh)
+        public void WriteMeshGeometry(Mesh msh)
         {
             this.Writer.WriteStartElement("Geometry");
             WriteProperty("Faces", SerializeMeshFaces(msh), 1);
@@ -353,7 +442,7 @@ namespace MMBuilder
         }
 
         // method to write the geometry element of a polyline
-        public void WritePolyLineGeometry(Rhino.Geometry.Polyline pline)
+        public void WritePolyLineGeometry(Polyline pline)
         {
             this.Writer.WriteStartElement("Geometry")
               ;
@@ -368,7 +457,7 @@ namespace MMBuilder
         }
 
         // Returns a string of serialized mesh faces (flattened)
-        public string SerializeMeshFaces(Rhino.Geometry.Mesh msh)
+        public string SerializeMeshFaces(Mesh msh)
         {
             string serialized = "[]";
             List<string> faces = new List<string>();
@@ -391,7 +480,7 @@ namespace MMBuilder
         }
 
         // Returns a string of serialized mesh vertices (flattened)
-        public string SerializeMeshVertices(Rhino.Geometry.Mesh msh)
+        public string SerializeMeshVertices(Mesh msh)
         {
             string serialized = "[]";
             List<string> coords = new List<string>();
@@ -406,7 +495,7 @@ namespace MMBuilder
         }
 
         // Returns a string of serialized polyline vertices (flattened)
-        public string SerializePolylineVertices(Rhino.Geometry.Polyline pline)
+        public string SerializePolylineVertices(Polyline pline)
         {
             string serialized = "[]";
             List<string> coords = new List<string>();
@@ -434,7 +523,7 @@ namespace MMBuilder
         }
 
         // ## not working
-        public string SerializeMeshEdges(Rhino.Geometry.Mesh msh)
+        public string SerializeMeshEdges(Mesh msh)
         {
             string serialized = "[]";
             return serialized;
@@ -443,8 +532,8 @@ namespace MMBuilder
         // Returns a joined mesh from a list of meshes
         public Mesh JoinMeshes(List<Mesh> meshes)
         {
-            var msh = new Rhino.Geometry.Mesh();
-            foreach (Rhino.Geometry.Mesh m in meshes)
+            var msh = new Mesh();
+            foreach (Mesh m in meshes)
             {
                 msh.Append(m);
             }
@@ -534,10 +623,10 @@ namespace MMBuilder
      */
     class MMFloor : MMObject
     {
-        Rhino.Geometry.Mesh _msh;
+        Mesh _msh;
 
         //constructor method
-        public MMFloor(Rhino.Geometry.Mesh msh, XmlTextWriter writer, string tag)
+        public MMFloor(Mesh msh, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._msh = msh;
@@ -545,7 +634,7 @@ namespace MMBuilder
             this._Name = this.Mesh.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the mesh geometry of this object
-        public Rhino.Geometry.Mesh Mesh { get { return this._msh; } }
+        public Mesh Mesh { get { return this._msh; } }
 
         // Write the body element of this object
         public override void WriteBody()
@@ -561,10 +650,10 @@ namespace MMBuilder
      */
     class MMBarrier : MMObject
     {
-        Rhino.Geometry.Mesh _msh;
+        Mesh _msh;
 
         //constructor method
-        public MMBarrier(Rhino.Geometry.Mesh msh, XmlTextWriter writer, string tag)
+        public MMBarrier(Mesh msh, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._msh = msh;
@@ -572,7 +661,7 @@ namespace MMBuilder
             this._Name = this.Mesh.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the mesh geometry of this object
-        public Rhino.Geometry.Mesh Mesh { get { return this._msh; } }
+        public Mesh Mesh { get { return this._msh; } }
 
         // Write the body element of this object
         public override void WriteBody()
@@ -588,10 +677,10 @@ namespace MMBuilder
      */
     class MMLink : MMObject
     {
-        Rhino.Geometry.Mesh _msh;
+        Mesh _msh;
 
         // contructor method
-        public MMLink(Rhino.Geometry.Mesh msh, XmlTextWriter writer, string tag)
+        public MMLink(Mesh msh, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._msh = msh;
@@ -600,7 +689,7 @@ namespace MMBuilder
             this._Name = this.Mesh.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the mesh geometry of this object
-        public Rhino.Geometry.Mesh Mesh { get { return this._msh; } }
+        public Mesh Mesh { get { return this._msh; } }
 
         // Write the body element of this object
         public override void WriteBody()
@@ -625,10 +714,10 @@ namespace MMBuilder
      */
     class MMPortal : MMObject
     {
-        Rhino.Geometry.Mesh _msh;
+        Mesh _msh;
 
         // contructor method
-        public MMPortal(Rhino.Geometry.Mesh msh, XmlTextWriter writer, string tag)
+        public MMPortal(Mesh msh, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._msh = msh;
@@ -637,7 +726,7 @@ namespace MMBuilder
             this._Name = this.Mesh.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the mesh geometry of this object
-        public Rhino.Geometry.Mesh Mesh { get { return this._msh; } }
+        public Mesh Mesh { get { return this._msh; } }
 
         // Write the body element of this object
         // This currently is not outputting the correct locations for:
@@ -665,9 +754,9 @@ namespace MMBuilder
      */
     class MMPath : MMObject
     {
-        Rhino.Geometry.Polyline _pline;
+        Polyline _pline;
 
-        public MMPath(Rhino.Geometry.Polyline pline, XmlTextWriter writer, string tag)
+        public MMPath(Polyline pline, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._pline = pline;
@@ -675,7 +764,7 @@ namespace MMBuilder
             this._Name = this.Pline.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the polyline geometry of this object
-        public Rhino.Geometry.Polyline Pline { get { return this._pline; } }
+        public Polyline Pline { get { return this._pline; } }
 
         // Write the body element of this object
         public override void WriteBody()
@@ -691,10 +780,10 @@ namespace MMBuilder
      */
     class MMVisOnly : MMObject
     {
-        Rhino.Geometry.Mesh _msh;
+        Mesh _msh;
 
         //constructor method
-        public MMVisOnly(Rhino.Geometry.Mesh msh, XmlTextWriter writer, string tag)
+        public MMVisOnly(Mesh msh, XmlTextWriter writer, string tag)
           : base(writer, tag)
         {
             this._msh = msh;
@@ -702,7 +791,7 @@ namespace MMBuilder
             this._Name = this.Mesh.ToString().Replace(".", "_") + this.ObjectSubType + tag;
         }
         // return the mesh geometry of this object
-        public Rhino.Geometry.Mesh Mesh { get { return this._msh; } }
+        public Mesh Mesh { get { return this._msh; } }
 
         // Write the body element of this object
         public override void WriteBody()
