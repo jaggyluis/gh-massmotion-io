@@ -363,6 +363,9 @@ namespace MMBuilder
         }
     }
 
+    /// <summary>
+    /// Grasshopper Component class that creates Journey objects
+    /// </summary>
     public class MMJourney : GH_Component
     {
 
@@ -376,31 +379,76 @@ namespace MMBuilder
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("StartPortals", "StartPortals", "temp desciption", GH_ParamAccess.tree);
-            pManager.AddNumberParameter("StartWeights", "StartWeights", "temp description", GH_ParamAccess.tree);
-            pManager.AddMeshParameter("EndPortals", "EndPortals", "temp desciption", GH_ParamAccess.tree);
-            pManager.AddNumberParameter("EndWeights", "EndWeights", "temp description", GH_ParamAccess.tree);
-            pManager.AddMeshParameter("DwellPortals", "DwellPortals", "temp desciption", GH_ParamAccess.tree);
-            pManager.AddNumberParameter("DwelltWeights", "DwellWeights", "temp description", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("StartPortals", "StartPortals", "Start of Journey portals", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("StartWeights", "StartWeights", "Weighted portal priority", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("EndPortals", "EndPortals", "End of Journey portals", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("EndWeights", "EndWeights", "Weighted portal priority", GH_ParamAccess.tree);
+
+            pManager.AddMeshParameter("DwellPortals", "DwellPortals",
+                "Portals in which the agents will dwell. If not None, this Journey will become a 'Circulate'.", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("DwellWeights", "DwellWeights", "Weighted portal priority", GH_ParamAccess.tree);
+            pManager.AddIntervalParameter("DwellTime", "DwellTime", "Interval during which Agents will dwell in the DwellPortals", GH_ParamAccess.item);
+            pManager.AddNumberParameter("DwellType", "DwellType", "temp description", GH_ParamAccess.item);
+
+            pManager.AddNumberParameter("AgentNum", "AgentNum", "The number of agents in this Journey", GH_ParamAccess.item);
+            pManager.AddIntervalParameter("SimTime", "SimTime", "The Duration of this Journey", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "Name", "The name of this Journey", GH_ParamAccess.item);
+
+
+            pManager[1].Optional = true;
+            pManager[3].Optional = true;
+            pManager[4].Optional = true;
+            pManager[5].Optional = true;
+            pManager[6].Optional = true;
+            pManager[7].Optional = true;
 
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("out", "O", "temp", GH_ParamAccess.item);
+            pManager.AddTextParameter("Journey", "Journey", "temp", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
 
-            if (startPortals.BranchCount != 0 &&
-              endPortals.BranchCount != 0 &&
-              agentNum != null &&
-              simTime != null &&
+            double agentNum = 0;
+            string name = null;
+            string dwellTyoe = null; // dwellType to be implemented
+
+            Interval simTime = new Interval(0, 0);
+            Interval dwellTime = new Interval(0, 0);
+
+            GH_Structure<GH_Mesh> startPortals = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Number> startWeights = new GH_Structure<GH_Number>();
+            GH_Structure<GH_Mesh> endPortals = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Number> endWeights = new GH_Structure<GH_Number>();
+            GH_Structure<GH_Mesh> dwellPortals = new GH_Structure<GH_Mesh>();
+            GH_Structure<GH_Number> dwellWeights = new GH_Structure<GH_Number>();
+
+
+            if (!DA.GetDataTree("StartPortals", out startPortals)) return;
+            DA.GetDataTree("StartWeights", out startWeights);
+
+            if (!DA.GetDataTree("EndPortals", out endPortals)) return;
+            DA.GetDataTree("EndWeights", out endWeights);
+
+            DA.GetDataTree("DwellPortals", out dwellPortals);
+            DA.GetDataTree("DwellWeights", out dwellWeights);
+
+            if (!DA.GetData("AgentNum", ref agentNum)) return;
+            if (!DA.GetData("SimTime", ref simTime)) return;
+            if (!DA.GetData("Name", ref name)) return;
+
+
+            if (startPortals.AllData(true).Count() != 0 &&
+              endPortals.AllData(true).Count() != 0 &&
+              agentNum != 0 &&
+              simTime.T0 != simTime.T1 &&
               name != null)
             {
 
-                string journeyName = dwellPortals.AllData().Count != 0 ? "Circulate: " + name : "Journey: " + name;
+                string journeyName = dwellPortals.AllData(true).Count() != 0 ? "Circulate: " + name : "Journey: " + name;
                 string startWeightsString;
                 string endWeightsString;
                 string dwellWeightsString;
@@ -409,47 +457,57 @@ namespace MMBuilder
                 List<string> endPortalIDs = new List<string>();
                 List<string> dwellPortalIDs = new List<string>();
 
-                foreach (Mesh portal in startPortals.AllData())
+                foreach (GH_Mesh portal in startPortals.AllData(true))
                 {
                     var id = Guid.NewGuid().ToString();
-                    portal.SetUserString(journeyName, id);
+                    portal.Value.SetUserString(journeyName, id);
                     startPortalIDs.Add(id);
                 }
-                foreach (Mesh portal in endPortals.AllData())
+                foreach (GH_Mesh portal in endPortals.AllData(true))
                 {
                     var id = Guid.NewGuid().ToString();
-                    portal.SetUserString(journeyName, id);
+                    portal.Value.SetUserString(journeyName, id);
                     endPortalIDs.Add(id);
                 }
-                foreach (Mesh portal in dwellPortals.AllData())
+                foreach (GH_Mesh portal in dwellPortals.AllData(true))
                 {
                     var id = Guid.NewGuid().ToString();
-                    portal.SetUserString(journeyName, id);
+                    portal.Value.SetUserString(journeyName, id);
                     dwellPortalIDs.Add(id);
                 }
 
-                if (endWeights.AllData().Count() == endPortals.AllData().Count())
+                if (endWeights.AllData(true).Count() == endPortals.AllData(true).Count())
                 {
-                    endWeightsString = SerializeList(endWeights.AllData());
+                    var weights = new List<double>();
+                    foreach (GH_Number num in endWeights.AllData(true))
+                    {
+                        weights.Add(num.Value);
+                    }
+                    endWeightsString = SerializeList(weights);
                 }
-                else if (endWeights.BranchCount == 0)
+                else if (endWeights.AllData(true).Count() == 0)
                 {
                     endWeightsString = SerializeList(AverageNumList(endPortalIDs.Count()));
                 }
                 else {
-                    Print("WARNING: end weight count not equal to end portal count: using uniform distribution");
+                    //Print("WARNING: end weight count not equal to end portal count: using uniform distribution");
                     endWeightsString = SerializeList(AverageNumList(endPortalIDs.Count()));
                 }
-                if (startWeights.AllData().Count() == startPortals.AllData().Count())
+                if (startWeights.AllData(true).Count() == startPortals.AllData(true).Count())
                 {
-                    startWeightsString = SerializeList(startWeights.AllData());
+                    var weights = new List<double>();
+                    foreach (GH_Number num in startWeights.AllData(true))
+                    {
+                        weights.Add(num.Value);
+                    }
+                    startWeightsString = SerializeList(weights);
                 }
-                else if (startWeights.BranchCount == 0)
+                else if (startWeights.AllData(true).Count() == 0)
                 {
                     startWeightsString = SerializeList(AverageNumList(startPortalIDs.Count()));
                 }
                 else {
-                    Print("WARNING: start weight count not equal to start portal count: using uniform distribution");
+                    //Print("WARNING: start weight count not equal to start portal count: using uniform distribution");
                     startWeightsString = SerializeList(AverageNumList(startPortalIDs.Count()));
                 }
 
@@ -460,19 +518,24 @@ namespace MMBuilder
 
                     if (!simTime.IncludesInterval(dwellTime))
                     {
-                        Print("WARNING: dwellTime not within simTime: running dwellTime for entire Simulation");
+                        //Print("WARNING: dwellTime not within simTime: running dwellTime for entire Simulation");
                         dwellTime = simTime;
                     }
-                    if (dwellWeights.AllData().Count() == dwellPortals.AllData().Count())
+                    if (dwellWeights.AllData(true).Count() == dwellPortals.AllData(true).Count())
                     {
-                        dwellWeightsString = SerializeList(dwellWeights.AllData());
+                        var weights = new List<double>();
+                        foreach (GH_Number num in dwellWeights.AllData(true))
+                        {
+                            weights.Add(num.Value);
+                        }
+                        dwellWeightsString = SerializeList(weights);
                     }
-                    else if (dwellWeights.BranchCount == 0)
+                    else if (dwellWeights.AllData(true).Count() == 0)
                     {
                         dwellWeightsString = SerializeList(AverageNumList(dwellPortalIDs.Count()));
                     }
                     else {
-                        Print("WARNING: dwell weight count not equal to dwell portal count: using uniform distribution");
+                        //Print("WARNING: dwell weight count not equal to dwell portal count: using uniform distribution");
                         dwellWeightsString = SerializeList(AverageNumList(dwellPortalIDs.Count()));
                     }
 
@@ -510,25 +573,25 @@ namespace MMBuilder
                 _temp.AddDataTypeVectorWeightedGlobalIDAttribute("AttrEventMultiOrigin",
                   SerializeList(startPortalIDs),
                   startWeightsString);
-                _temp.AddDataTypeAttribute("AttrEventPopulation", agentNum, "DataTypeInt");
+                _temp.AddDataTypeAttribute("AttrEventPopulation", agentNum.ToString(), "DataTypeInt");
                 _temp.AddDataTypeDataTypeTimeReferenceAttribute("AttrEventStartTime",
                   "00000000-0000-0000-0000-000000000000",
                   TimeInSeconds(simTime[0]));
 
-                foreach (Mesh portal in startPortals.AllData())
+                foreach (GH_Mesh portal in startPortals.AllData(true))
                 {
-                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                    portal.Value.SetUserString(portal.Value.GetUserString(journeyName), _temp.ToString());
                 }
-                foreach (Mesh portal in endPortals.AllData())
+                foreach (GH_Mesh portal in endPortals.AllData(true))
                 {
-                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                    portal.Value.SetUserString(portal.Value.GetUserString(journeyName), _temp.ToString());
                 }
-                foreach (Mesh portal in startPortals.AllData())
+                foreach (GH_Mesh portal in startPortals.AllData(true))
                 {
-                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                    portal.Value.SetUserString(portal.Value.GetUserString(journeyName), _temp.ToString());
                 }
-
-                A = journeyName;
+;
+                DA.SetData("Journey", journeyName);
             }
         }
 
