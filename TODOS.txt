@@ -1,4 +1,6 @@
 
 -bug: links not importing correctly sometimes
--fix dwellType on circulate + create typehints
--fir simType on .mmxml export
+- fix dwellType on circulate
+- run through and implement all typehints and descriptions
+- clean up codebase and iplement attribute class accross all othe classes
+- fix simType on .mmxml export

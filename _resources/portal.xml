@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes" ?>
+<!---->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Portal>
+            <Attributes>
+            </Attributes>
+            <Body>
+                <Attributes>
+                    <AttrPortalGoalEdgeIndices>
+                        <Data v="[4,0]" t="1" />
+                        <Type v="DataTypeVectorInt" t="3" />
+                    </AttrPortalGoalEdgeIndices>
+                    <AttrPortalGoalPointPositions>
+                        <Data v="[2.300000,0.030000,0.000000,-2.300000,0.030000,0.000000]" t="2" />
+                        <Type v="DataTypeVectorDouble" t="3" />
+                    </AttrPortalGoalPointPositions>
+                </Attributes>
+                <Geometry>
+                    <Faces v="[0,1,2,1,2,3]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-2.500000,0.020000,-0.250000,-2.500000,0.020000,0.250000,2.500000,0.020000,-0.250000,2.500000,0.020000,0.250000]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="d4fbf67c-635c-4755-84bb-0b37658a8607" t="3" />
+            <ID v="1" t="1" />
+            <Name v="Portal" t="3" />
+            <ObjectSubType v="PortalActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Portal>
+    </Objects>
+    <Settings>
+        <Attributes>
+        </Attributes>
+    </Settings>
+</DataRoot>

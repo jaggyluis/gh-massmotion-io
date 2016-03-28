@@ -11,13 +11,17 @@ using Grasshopper.Kernel.Data;
 
 namespace MMBuilder
 {
-    public class MMExport : GH_Component
+    /// <summary>
+    /// Main Grasshopper to Mass motion export component.
+    /// This exports .mmxml files but could be changed to export .mm
+    /// </summary>
+    public class Export : GH_Component
     {
         /// <summary>
         /// globals
         /// </summary>
-        private List<string> collectionList = new List<string>();
-        private List<string> journeyList  = new List<string>();
+        private List<string> collectionList;
+        private List<string> journeyList;
         private Dictionary<string, List<string>> collectionDict;
         private Dictionary<string, string> journeyDict;
 
@@ -28,9 +32,9 @@ namespace MMBuilder
         /// Subcategory the panel. If you use non-existing tab or panel names, 
         /// new tabs/panels will automatically be created.
         /// </summary>
-        public MMExport()
+        public Export()
           : base("MMExport", "MMExport",
-              "temporary description",
+              "temp description",
               "Circulation Analysis", "Mass Motion")
         {
         }
@@ -40,7 +44,6 @@ namespace MMBuilder
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-
             pManager.AddMeshParameter("Floors", "Floors", "Floor Geometry to export", GH_ParamAccess.tree);
             pManager.AddMeshParameter("Barriers", "Barriers", "Barrier Geometry to export", GH_ParamAccess.tree);
             pManager.AddMeshParameter("Links", "Links", "Link geometry to export", GH_ParamAccess.tree);
@@ -50,7 +53,6 @@ namespace MMBuilder
 
             pManager.AddTextParameter("Collections", "Collections", "MMCollection objects to export", GH_ParamAccess.tree);
             pManager.AddTextParameter("Journeys", "Journeys", "MMJourney objects to export", GH_ParamAccess.tree);
-
 
             pManager.AddTextParameter("FilePath", "FilePath", "Directory for .mmxml export", GH_ParamAccess.item);
             pManager.AddTextParameter("FileName", "FileName", "Name of file to export", GH_ParamAccess.item);
@@ -68,8 +70,6 @@ namespace MMBuilder
             pManager[5].Optional = true;
             pManager[6].Optional = true;
             pManager[7].Optional = true;
-
-
         }
 
         /// <summary>
@@ -118,6 +118,11 @@ namespace MMBuilder
             List<Mesh> geometryList = new List<Mesh>();
             List<Polyline> pathList = new List<Polyline>();
 
+            collectionList = new List<string>();
+            journeyList = new List<string>();
+
+
+
             foreach (GH_Mesh msh in FloorTree.AllData(true))
             {
                 floorList.Add(msh.Value);
@@ -145,7 +150,6 @@ namespace MMBuilder
                 {
                     pathList.Add(pline);
                 }
-
             }
             foreach (GH_String str in CollectionTree.AllData(true))
             {
@@ -153,7 +157,6 @@ namespace MMBuilder
                 {
                     collectionList.Add(str.Value);
                 } 
-                
             }
             foreach (GH_String str in JourneyTree.AllData(true))
             {
@@ -162,10 +165,6 @@ namespace MMBuilder
                     journeyList.Add(str.Value);
                 }
             }
-
-
-            collectionDict = new Dictionary<string, List<string>>();
-            journeyDict = new Dictionary<string, string>();
 
             if (!DA.GetData(8, ref filePath)) return;
             if (!DA.GetData(9, ref fileName)) return;
@@ -191,6 +190,10 @@ namespace MMBuilder
                     writer.WriteAttributeString("FileName", "");
 
                     writer.WriteStartElement("Objects");
+
+                    collectionDict = new Dictionary<string, List<string>>();                    
+                    journeyDict = new Dictionary<string, string>();
+
 
                     for (int i = 0; i < portalList.Count; i++)
                     {
@@ -238,8 +241,6 @@ namespace MMBuilder
                         mmCirculate.Write();
                     }
                     writer.WriteEndElement();
-
-
                     writer.WriteStartElement("Settings");
                     if (simTime == null)
                     {
@@ -270,13 +271,14 @@ namespace MMBuilder
                         writer.WriteEndElement();
                     }
                     writer.WriteEndElement();
-
                     writer.WriteEndElement();
                     writer.WriteEndDocument();
 
                     string res = "File written as " + path;
                     //System.Diagnostics.Process.Start("explorer.exe", pathString);
                     DA.SetData("File", res);
+                    journeyDict.Clear();
+                    collectionDict.Clear();
 
                 }
             }
@@ -366,10 +368,10 @@ namespace MMBuilder
     /// <summary>
     /// Grasshopper Component class that creates Journey objects
     /// </summary>
-    public class MMJourney : GH_Component
+    public class Journey : GH_Component
     {
 
-        public MMJourney()
+        public Journey()
             : base("MMJourney", "MMJourney", 
                   "temp decription",
                   "Circulation Analysis", "Mass Motion")
@@ -653,9 +655,70 @@ namespace MMBuilder
         }
 
     }
-    ///
+
+    /// <summary>
+    /// Grasshopper Component class that creates Collection objects
+    /// </summary>
+    public class Collection : GH_Component
+    {
+
+        public Collection() :
+            base("MMCollection", "MMCollection", "temp description",
+                "Circulation Analysis", "Mass Motion")
+        {
+        }
+
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
+        {
+            pManager.AddMeshParameter("Geometry", "Geometry", "temp description", GH_ParamAccess.tree);
+            pManager.AddTextParameter("Name", "Name", "temp description", GH_ParamAccess.item);
+        }
+
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+        {
+            pManager.AddTextParameter("Collection", "Collection", "temp description", GH_ParamAccess.item);
+        }
+
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
+
+            string name = null;
+            GH_Structure<GH_Mesh> geometry = new GH_Structure<GH_Mesh>();
+
+            if (DA.GetData("Name", ref name) && DA.GetDataTree("Geometry", out geometry))
+            {
+                foreach (GH_Mesh msh in geometry.AllData(true))
+                {
+                    var id = Guid.NewGuid().ToString();
+                    msh.Value.SetUserString(name, id);
+                }
+            }
+
+            DA.SetData("Collection", "Collection: " + name);
+        }
+
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                // You can add image files to your project resources and access them like this:
+                //return Resources.IconForThisComponent;
+                return null;
+            }
+        }
+
+        public override Guid ComponentGuid
+        {
+            get
+            {
+                return Guid.NewGuid();
+            }
+        }
+    }
+
+    /// <summary>
     /// MassMotionObject SuperClass that handles geometry conversion to Xml
-    /// 
+    /// </summary>
     abstract class MMObject
     {
         public XmlTextWriter _Writer;
@@ -1037,7 +1100,6 @@ namespace MMBuilder
         public override void WriteBody()
         {
             this.Writer.WriteStartElement("Body");
-            this.Writer.WriteStartElement("Body");
             this.Writer.WriteStartElement("Attributes");
             this.WriteAttribute("AttrPortalGoalEdgeIndices",
               "[1,4]", 1,
@@ -1048,7 +1110,6 @@ namespace MMBuilder
             this.Writer.WriteEndElement();
             this.WriteMeshGeometry(this.Mesh);
             this.Writer.WriteEndElement();
-            
         }
     }
 

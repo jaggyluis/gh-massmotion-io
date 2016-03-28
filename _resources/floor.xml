@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="yes" ?>
+<!---->
+<DataRoot FormatVersion="1" ContentVersion="8.0.9.0" FileName="">
+    <Objects>
+        <Floor>
+            <Attributes>
+            </Attributes>
+            <Body>
+                <Geometry>
+                    <Faces v="[0,1,2,1,2,3]" t="1" />
+                    <GeometryType v="MeshGeometry" t="3" />
+                    <Vertices v="[-5.000000,0.000000,-5.000000,-5.000000,0.000000,5.000000,5.000000,0.000000,-5.000000,5.000000,0.000000,5.000000]" t="2" />
+                </Geometry>
+            </Body>
+            <GlobalID v="5417d6f4-46de-4168-aa41-8630814e099d" t="3" />
+            <ID v="1" t="1" />
+            <Name v="Floor" t="3" />
+            <ObjectSubType v="FloorActor" t="3" />
+            <ObjectType v="Actor" t="3" />
+        </Floor>
+    </Objects>
+    <Settings>
+        <Attributes>
+        </Attributes>
+    </Settings>
+</DataRoot>
