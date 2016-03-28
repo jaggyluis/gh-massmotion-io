@@ -29,7 +29,7 @@ namespace MMBuilder
         /// new tabs/panels will automatically be created.
         /// </summary>
         public MMExport()
-          : base("MMBuilder", "MMB",
+          : base("MMExport", "MMExport",
               "temporary description",
               "Circulation Analysis", "Mass Motion")
         {
@@ -40,6 +40,7 @@ namespace MMBuilder
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
+
             pManager.AddMeshParameter("Floors", "Floors", "Floor Geometry to export", GH_ParamAccess.tree);
             pManager.AddMeshParameter("Barriers", "Barriers", "Barrier Geometry to export", GH_ParamAccess.tree);
             pManager.AddMeshParameter("Links", "Links", "Link geometry to export", GH_ParamAccess.tree);
@@ -50,13 +51,24 @@ namespace MMBuilder
             pManager.AddTextParameter("Collections", "Collections", "MMCollection objects to export", GH_ParamAccess.tree);
             pManager.AddTextParameter("Journeys", "Journeys", "MMJourney objects to export", GH_ParamAccess.tree);
 
+
             pManager.AddTextParameter("FilePath", "FilePath", "Directory for .mmxml export", GH_ParamAccess.item);
             pManager.AddTextParameter("FileName", "FileName", "Name of file to export", GH_ParamAccess.item);
 
             pManager.AddBooleanParameter("Run",
                 "Run",
-                "Toggle for export. If set to True, the exported file will auti-update",
+                "Export toggle. If set to True, the new file will auto-update with any geometry changes.",
                 GH_ParamAccess.item);
+
+            pManager[0].Optional = true;
+            pManager[1].Optional = true;
+            pManager[2].Optional = true;
+            pManager[3].Optional = true;
+            pManager[4].Optional = true;
+            pManager[5].Optional = true;
+            pManager[6].Optional = true;
+            pManager[7].Optional = true;
+
 
         }
 
@@ -350,9 +362,237 @@ namespace MMBuilder
             }
         }
     }
-   ///
-   /// MassMotionObject SuperClass that handles geometry conversion to Xml
-   /// 
+
+    public class MMJourney : GH_Component
+    {
+
+        public MMJourney()
+            : base("MMJourney", "MMJourney", 
+                  "temp decription",
+                  "Circulation Analysis", "Mass Motion")
+        {
+        }
+
+
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
+        {
+            pManager.AddMeshParameter("StartPortals", "StartPortals", "temp desciption", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("StartWeights", "StartWeights", "temp description", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("EndPortals", "EndPortals", "temp desciption", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("EndWeights", "EndWeights", "temp description", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("DwellPortals", "DwellPortals", "temp desciption", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("DwelltWeights", "DwellWeights", "temp description", GH_ParamAccess.tree);
+
+        }
+
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+        {
+            pManager.AddTextParameter("out", "O", "temp", GH_ParamAccess.item);
+        }
+
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
+
+            if (startPortals.BranchCount != 0 &&
+              endPortals.BranchCount != 0 &&
+              agentNum != null &&
+              simTime != null &&
+              name != null)
+            {
+
+                string journeyName = dwellPortals.AllData().Count != 0 ? "Circulate: " + name : "Journey: " + name;
+                string startWeightsString;
+                string endWeightsString;
+                string dwellWeightsString;
+
+                List<string> startPortalIDs = new List<string>();
+                List<string> endPortalIDs = new List<string>();
+                List<string> dwellPortalIDs = new List<string>();
+
+                foreach (Mesh portal in startPortals.AllData())
+                {
+                    var id = Guid.NewGuid().ToString();
+                    portal.SetUserString(journeyName, id);
+                    startPortalIDs.Add(id);
+                }
+                foreach (Mesh portal in endPortals.AllData())
+                {
+                    var id = Guid.NewGuid().ToString();
+                    portal.SetUserString(journeyName, id);
+                    endPortalIDs.Add(id);
+                }
+                foreach (Mesh portal in dwellPortals.AllData())
+                {
+                    var id = Guid.NewGuid().ToString();
+                    portal.SetUserString(journeyName, id);
+                    dwellPortalIDs.Add(id);
+                }
+
+                if (endWeights.AllData().Count() == endPortals.AllData().Count())
+                {
+                    endWeightsString = SerializeList(endWeights.AllData());
+                }
+                else if (endWeights.BranchCount == 0)
+                {
+                    endWeightsString = SerializeList(AverageNumList(endPortalIDs.Count()));
+                }
+                else {
+                    Print("WARNING: end weight count not equal to end portal count: using uniform distribution");
+                    endWeightsString = SerializeList(AverageNumList(endPortalIDs.Count()));
+                }
+                if (startWeights.AllData().Count() == startPortals.AllData().Count())
+                {
+                    startWeightsString = SerializeList(startWeights.AllData());
+                }
+                else if (startWeights.BranchCount == 0)
+                {
+                    startWeightsString = SerializeList(AverageNumList(startPortalIDs.Count()));
+                }
+                else {
+                    Print("WARNING: start weight count not equal to start portal count: using uniform distribution");
+                    startWeightsString = SerializeList(AverageNumList(startPortalIDs.Count()));
+                }
+
+                Attribute _temp = new Attribute("Attributes");
+
+                if (dwellPortalIDs.Count != 0)
+                {
+
+                    if (!simTime.IncludesInterval(dwellTime))
+                    {
+                        Print("WARNING: dwellTime not within simTime: running dwellTime for entire Simulation");
+                        dwellTime = simTime;
+                    }
+                    if (dwellWeights.AllData().Count() == dwellPortals.AllData().Count())
+                    {
+                        dwellWeightsString = SerializeList(dwellWeights.AllData());
+                    }
+                    else if (dwellWeights.BranchCount == 0)
+                    {
+                        dwellWeightsString = SerializeList(AverageNumList(dwellPortalIDs.Count()));
+                    }
+                    else {
+                        Print("WARNING: dwell weight count not equal to dwell portal count: using uniform distribution");
+                        dwellWeightsString = SerializeList(AverageNumList(dwellPortalIDs.Count()));
+                    }
+
+                    _temp.AddDataTypeVectorWeightedGlobalIDAttribute("AttrCirculateEventCirculatePortals",
+                      SerializeList(dwellPortalIDs),
+                      dwellWeightsString); // weights
+                    _temp.AddDataTypeBoolAttribute("AttrCirculateEventCirculateWaitOnStart", "0");
+                    _temp.AddDataTypeEnumAttribute("AttrCirculateEventCirculateWaitStyle", "WaitSpreadOut", "2");
+                    _temp.AddDataTypeDistributionAttribute("AttrCirculateEventLifetimeCountDistribution",
+                      "Uniform",
+                      "[0.000000,10.000000]"); // work this out later
+                    _temp.AddDataTypeDistributionAttribute("AttrCirculateEventLifetimeDurationDistribution",
+                      "Uniform",
+                      SerializeList(new List<double> { dwellTime[0] * 60F, dwellTime[1] * 60F }));
+                    _temp.AddDataTypeDataTypeTimeReferenceAttribute("AttrEventCirculateLifetimeEndTime",
+                      "00000000-0000-0000-0000-000000000000",
+                      TimeInSeconds(dwellTime[1]));
+                    _temp.AddDataTypeEnumAttribute("AttrCirculateEventLifetimeType", "LifetimeForever", "0");
+                    _temp.AddDataTypeBoolAttribute("AttrCirculateEventLifetimeWaitAfterCount", "0");
+
+
+                }
+                _temp.AddDataTypeBoolAttribute("AttrEnabled", "1");
+                _temp.AddDataTypeActionAttribute("AttrEventBirthAction", "ActionNone");
+                _temp.AddDataTypeAttribute("AttrEventBirthProfile", "00000000-0000-0000-0000-000000000000", "DataTypeGlobalID");
+                _temp.AddDataTypeAttribute("AttrEventDemandCurveData", "[]", "DataTypeVectorDouble");
+                _temp.AddDataTypeEnumAttribute("AttrEventDemandType", "DemandDistribution", "2");
+                _temp.AddDataTypeEnumAttribute("AttrEventDestinationType", "DestinationAssigned", "1");
+                _temp.AddDataTypeDistributionAttribute("AttrEventDurationDistribution",
+                  "Uniform",
+                  SerializeList(new List<double> { simTime[0] * 60F, simTime[1] * 60F }));
+                _temp.AddDataTypeVectorWeightedGlobalIDAttribute("AttrEventMultiDestination",
+                  SerializeList(endPortalIDs),
+                  endWeightsString); // weights
+                _temp.AddDataTypeVectorWeightedGlobalIDAttribute("AttrEventMultiOrigin",
+                  SerializeList(startPortalIDs),
+                  startWeightsString);
+                _temp.AddDataTypeAttribute("AttrEventPopulation", agentNum, "DataTypeInt");
+                _temp.AddDataTypeDataTypeTimeReferenceAttribute("AttrEventStartTime",
+                  "00000000-0000-0000-0000-000000000000",
+                  TimeInSeconds(simTime[0]));
+
+                foreach (Mesh portal in startPortals.AllData())
+                {
+                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                }
+                foreach (Mesh portal in endPortals.AllData())
+                {
+                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                }
+                foreach (Mesh portal in startPortals.AllData())
+                {
+                    portal.SetUserString(portal.GetUserString(journeyName), _temp.ToString());
+                }
+
+                A = journeyName;
+            }
+        }
+
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                // You can add image files to your project resources and access them like this:
+                //return Resources.IconForThisComponent;
+                return null;
+            }
+        }
+
+        public override Guid ComponentGuid
+        {
+            get
+            {
+                return Guid.NewGuid();
+            }
+        }
+
+        private string TimeInSeconds(double num)
+        {
+            List<string> timeInSeconds = new List<string> { "00", "00", "00" };
+            timeInSeconds[0] = NumToTimeString(Math.Floor(num / 60));
+            timeInSeconds[1] = NumToTimeString(num % 60);
+            return String.Join(":", timeInSeconds.ToArray());
+        }
+
+        private string NumToTimeString(double num)
+        {
+            if (num.ToString().Length < 2)
+            {
+                return "0" + num.ToString();
+            }
+            else {
+                return num.ToString();
+            }
+        }
+
+        private string SerializeList<T>(List<T> lst)
+        {
+            string serialized = "[]";
+            List<string> serializedList = new List<string>();
+
+            foreach (var item in lst)
+            {
+                serializedList.Add(item.ToString());
+            }
+            return serialized.Insert(1, String.Join(",", serializedList.ToArray()));
+        }
+
+        private List<float> AverageNumList(double num)
+        {
+            List<float> averages = new List<float>();
+            float average = (1F / (float)num);
+            for (int i = 0; i < num; i++) averages.Add(average);
+            return averages;
+        }
+
+    }
+    ///
+    /// MassMotionObject SuperClass that handles geometry conversion to Xml
+    /// 
     abstract class MMObject
     {
         public XmlTextWriter _Writer;
@@ -541,10 +781,9 @@ namespace MMBuilder
         }
     }
 
-
-    /*
-     * MassMotionCollection Class
-     */
+    /// <summary>
+    /// Mass Motion Collection class
+    /// </summary>
     class MMCollection : MMObject
     {
 
@@ -589,9 +828,9 @@ namespace MMBuilder
         }
     }
 
-    /*
-     * MassMotion Circulation and Journey Class
-     */
+    /// <summary>
+    /// Mass Motion Circulate class
+    /// </summary>
     class MMCirculate : MMObject
     {
         private string _attr;
@@ -617,10 +856,9 @@ namespace MMBuilder
         }
     }
 
-
-    /*
-     * MassMotionFloor Class
-     */
+    /// <summary>
+    /// Mass Motion Floor class
+    /// </summary>
     class MMFloor : MMObject
     {
         Mesh _msh;
@@ -645,9 +883,9 @@ namespace MMBuilder
         }
     }
 
-    /*
-     * MassMotionBarrier Class
-     */
+    /// <summary>
+    /// Mass Motion Barrier class
+    /// </summary>
     class MMBarrier : MMObject
     {
         Mesh _msh;
@@ -672,9 +910,9 @@ namespace MMBuilder
         }
     }
 
-    /*
-     * MassMotionLink Class
-     */
+    /// <summary>
+    /// Mass Motion Link class
+    /// </summary>
     class MMLink : MMObject
     {
         Mesh _msh;
@@ -709,9 +947,10 @@ namespace MMBuilder
             this.Writer.WriteEndElement();
         }
     }
-    /*
-     * MassMotionPortal Class
-     */
+
+    /// <summary>
+    /// Mass Motion Portal class
+    /// </summary>
     class MMPortal : MMObject
     {
         Mesh _msh;
@@ -735,7 +974,7 @@ namespace MMBuilder
         public override void WriteBody()
         {
             this.Writer.WriteStartElement("Body");
-
+            this.Writer.WriteStartElement("Body");
             this.Writer.WriteStartElement("Attributes");
             this.WriteAttribute("AttrPortalGoalEdgeIndices",
               "[1,4]", 1,
@@ -746,12 +985,13 @@ namespace MMBuilder
             this.Writer.WriteEndElement();
             this.WriteMeshGeometry(this.Mesh);
             this.Writer.WriteEndElement();
+            
         }
     }
 
-    /*
-     * MassMotionPath Class
-     */
+    /// <summary>
+    /// Mass Motion Path class
+    /// </summary>
     class MMPath : MMObject
     {
         Polyline _pline;
@@ -775,9 +1015,9 @@ namespace MMBuilder
         }
     }
 
-    /*
-     * MassMotion VisualizationOnly Class
-     */
+    /// <summary>
+    /// Mass Motion Visualisation Only class
+    /// </summary>
     class MMVisOnly : MMObject
     {
         Mesh _msh;
@@ -799,6 +1039,144 @@ namespace MMBuilder
             this.Writer.WriteStartElement("Body");
             this.WriteMeshGeometry(this.Mesh);
             this.Writer.WriteEndElement();
+        }
+    }
+
+    /// <summary>
+    /// Attribute class to write geometry to an Mass Motion Xml Attribute
+    /// </summary>
+    class Attribute
+    {
+        private string _name;
+        private string _v;
+        private string _t;
+        private Dictionary<string, Attribute> _attr = new Dictionary<string, Attribute>();
+
+        public Attribute(string name)
+        {
+            this._name = name;
+        }
+        public string Name { get { return this._name; } }
+        public string V
+        {
+            get { return this._v; }
+            set { this._v = value; }
+        }
+        public string T
+        {
+            get { return this._t; }
+            set { this._t = value; }
+        }
+        public Dictionary<string, Attribute> Attributes { get { return this._attr; } }
+
+
+        public void AddAttribute(string name, string v, string t)
+        {
+            var attr = new Attribute(name);
+            this._attr.Add(name, attr);
+            if (v != "") { attr.V = v; }
+            if (t != "") { attr.T = t; }
+        }
+
+        public void AddNestedAttribute(string name, List<List<string>> subAttr)
+        {
+            this.AddAttribute(name, "", "");
+            foreach (List<string> attr in subAttr)
+            {
+                this.Attributes[name].AddAttribute(attr[0], attr[1], attr[2]);
+            }
+        }
+
+        public override string ToString()
+        {
+            string parsed = "<" + this.Name.ToString();
+
+            if (this.V != null)
+            {
+                parsed += " v=" + "\"" + this.V + "\" ";
+            }
+            if (this.T != null)
+            {
+                parsed += " t=" + "\"" + this.T + "\" ";
+            }
+            parsed += ">";
+
+            foreach (string key in this.Attributes.Keys)
+            {
+                parsed += this.Attributes[key].ToString();
+            }
+
+            return parsed + "</" + this.Name.ToString() + ">";
+        }
+
+        /*
+         * Mass Motion specific XML types
+         */
+        public void AddDataTypeAttribute(string name, string data, string type)
+        {
+            this.AddNestedAttribute(name, new List<List<string>> {
+          new List < string > {"Data", data, "1"},
+          new List < string > {"Type", type, "3"}
+          });
+        }
+
+        public void AddDataTypeBoolAttribute(string name, string data)
+        {
+            this.AddNestedAttribute(name, new List<List<string>> {
+          new List < string > {"Data", data, "0"},
+          new List < string > {"Type", "DataTypeBool", "3"}
+          });
+        }
+
+        public void AddDataTypeEnumAttribute(string name, string enumString, string enumValue)
+        {
+            this.AddAttribute(name, "", "");
+            this.Attributes[name].AddNestedAttribute("Data", new List<List<string>> {
+          new List < string > {"EnumString", enumString, "3"},
+          new List < string > {"EnumValue", enumValue, "1"}
+          });
+            this.Attributes[name].AddAttribute("Type", "DataTypeEnum", "3");
+        }
+
+        public void AddDataTypeVectorWeightedGlobalIDAttribute(string name, string ids, string weights)
+        {
+            this.AddAttribute(name, "", "");
+            this.Attributes[name].AddNestedAttribute("Data", new List<List<string>> {
+          new List < string > {"GlobalIDs", ids, "3"}, // list of GUIDs
+          new List < string > {"WeightedType", "WeightedNone", "3"},
+          new List < string > {"Weights", weights, "2"} // weighted average
+          });
+            this.Attributes[name].AddAttribute("Type", "DataTypeVectorWeightedGlobalID", "3");
+        }
+
+        public void AddDataTypeDataTypeTimeReferenceAttribute(string name, string guid, string time)
+        {
+            this.AddAttribute(name, "", ""); // cannot add optional parameters
+            this.Attributes[name].AddNestedAttribute("Data", new List<List<string>> {
+          new List < string > {"GlobalID", guid, "3"},
+          new List < string > {"TimeInSeconds", time, "3"},
+          new List < string > {"TimeType", "TimeSimulationStart", "3"}
+          });
+            this.Attributes[name].AddAttribute("Type", "DataTypeTimeReference", "3");
+        }
+
+        public void AddDataTypeDistributionAttribute(string name, string type, string values)
+        {
+            this.AddAttribute(name, "", "");
+            this.Attributes[name].AddNestedAttribute("Data", new List<List<string>> {
+          new List < string > {"Type", type, "3"},
+          new List < string > {"Values", values, "2"} // weighted average
+          });
+            this.Attributes[name].AddAttribute("Type", "DataTypeDistribution", "3");
+        }
+
+        public void AddDataTypeActionAttribute(string name, string action)
+        {
+            this.AddAttribute(name, "", "");
+            this.Attributes[name].AddNestedAttribute("Data", new List<List<string>> {
+          new List < string > {"ActionType", action, "3"},
+          });
+            this.Attributes[name].AddAttribute("Type", "DataTypeAction", "3");
         }
     }
 }
