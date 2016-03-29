@@ -5,3 +5,5 @@ C:\My Documents\_TEMP\Rhino\Grasshopper\MassMotion\Git\massmotion-export\build\M
 C:\My Documents\_TEMP\Rhino\Grasshopper\MassMotion\Git\massmotion-export\build\MMBuilder\MMBuilder\obj\Debug64\MMBuilder.pdb
 C:\Users\SFOLMJ\AppData\Roaming\Grasshopper\Libraries\MMBuilder.dll
 C:\Users\SFOLMJ\AppData\Roaming\Grasshopper\Libraries\MMBuilder.pdb
+C:\My Documents\_TEMP\Rhino\Grasshopper\MassMotion\Git\massmotion-export\build\MMBuilder\MMBuilder\obj\Debug64\MMBuilder.Properties.Resources.resources
+C:\My Documents\_TEMP\Rhino\Grasshopper\MassMotion\Git\massmotion-export\build\MMBuilder\MMBuilder\obj\Debug64\MMBuilder.csproj.GenerateResource.Cache

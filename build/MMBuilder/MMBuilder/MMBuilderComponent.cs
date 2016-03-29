@@ -8,6 +8,7 @@ using Rhino.Geometry;
 using System.IO;
 using Grasshopper.Kernel.Types;
 using Grasshopper.Kernel.Data;
+using MMBuilder.Properties;
 
 namespace MMBuilder
 {
@@ -34,7 +35,7 @@ namespace MMBuilder
         /// </summary>
         public Export()
           : base("MMExport", "MMExport",
-              "temp description",
+              "This Component builds and exports files for use with OASYS Flow and OASYS Mass Motion",
               "Circulation Analysis", "Mass Motion")
         {
         }
@@ -294,7 +295,7 @@ namespace MMBuilder
             {
                 // You can add image files to your project resources and access them like this:
                 //return Resources.IconForThisComponent;
-                return null;
+                return Resources.export_icon;
             }
         }
 
@@ -372,8 +373,9 @@ namespace MMBuilder
     {
 
         public Journey()
-            : base("MMJourney", "MMJourney", 
-                  "temp decription",
+            : base("MMJourney", "MMJourney",
+                 @"This component builds Journey and Circulate objects for importing into OASYS Mass Motion and OASYS Flow scenes. 
+                  All geometry input must be as meshes, and not rely on this component to convert from other Geometry types.",
                   "Circulation Analysis", "Mass Motion")
         {
         }
@@ -390,12 +392,11 @@ namespace MMBuilder
                 "Portals in which the agents will dwell. If not None, this Journey will become a 'Circulate'.", GH_ParamAccess.tree);
             pManager.AddNumberParameter("DwellWeights", "DwellWeights", "Weighted portal priority", GH_ParamAccess.tree);
             pManager.AddIntervalParameter("DwellTime", "DwellTime", "Interval during which Agents will dwell in the DwellPortals", GH_ParamAccess.item);
-            pManager.AddNumberParameter("DwellType", "DwellType", "temp description", GH_ParamAccess.item);
+            pManager.AddNumberParameter("DwellType", "DwellType", "The type of dwell that agents will use", GH_ParamAccess.item);
 
             pManager.AddNumberParameter("AgentNum", "AgentNum", "The number of agents in this Journey", GH_ParamAccess.item);
             pManager.AddIntervalParameter("SimTime", "SimTime", "The Duration of this Journey", GH_ParamAccess.item);
             pManager.AddTextParameter("Name", "Name", "The name of this Journey", GH_ParamAccess.item);
-
 
             pManager[1].Optional = true;
             pManager[3].Optional = true;
@@ -603,7 +604,7 @@ namespace MMBuilder
             {
                 // You can add image files to your project resources and access them like this:
                 //return Resources.IconForThisComponent;
-                return null;
+                return Resources.journey_icon;
             }
         }
 
@@ -663,14 +664,17 @@ namespace MMBuilder
     {
 
         public Collection() :
-            base("MMCollection", "MMCollection", "temp description",
+            base("MMCollection", "MMCollection",
+                "This component builds Collection objects to be used in OASYS Mass Motion and OASYS flow scenes",
                 "Circulation Analysis", "Mass Motion")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Geometry", "Geometry", "temp description", GH_ParamAccess.tree);
+            pManager.AddMeshParameter("Geometry", "Geometry", @"The geometry to include in a Collection. 
+                The input must be a mesh, and not rely on this component to convert from other Geometry types.",
+                GH_ParamAccess.tree);
             pManager.AddTextParameter("Name", "Name", "temp description", GH_ParamAccess.item);
         }
 
@@ -703,7 +707,7 @@ namespace MMBuilder
             {
                 // You can add image files to your project resources and access them like this:
                 //return Resources.IconForThisComponent;
-                return null;
+                return Resources.collection_icon;
             }
         }
 
