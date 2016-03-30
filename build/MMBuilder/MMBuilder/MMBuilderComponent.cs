@@ -610,10 +610,7 @@ namespace MMBuilder
 
         public override Guid ComponentGuid
         {
-            get
-            {
-                return Guid.NewGuid();
-            }
+            get { return new Guid("{da756f6c-182c-4a6e-ae01-c850f03c129a}"); }
         }
 
         private string TimeInSeconds(double num)
@@ -713,10 +710,7 @@ namespace MMBuilder
 
         public override Guid ComponentGuid
         {
-            get
-            {
-                return Guid.NewGuid();
-            }
+            get { return new Guid("{da756f6c-282c-4a6e-ae01-c850f03c129a}"); }
         }
     }
 
