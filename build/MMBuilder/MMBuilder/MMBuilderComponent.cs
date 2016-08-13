@@ -417,7 +417,7 @@ namespace MMBuilder
 
             double agentNum = 0;
             string name = null;
-            string dwellTyoe = null; // dwellType to be implemented
+            string dwellType = null; // dwellType to be implemented
 
             Interval simTime = new Interval(0, 0);
             Interval dwellTime = new Interval(0, 0);
@@ -438,6 +438,7 @@ namespace MMBuilder
 
             DA.GetDataTree("DwellPortals", out dwellPortals);
             DA.GetDataTree("DwellWeights", out dwellWeights);
+            DA.GetData("DwellTime", ref dwellTime);
 
             if (!DA.GetData("AgentNum", ref agentNum)) return;
             if (!DA.GetData("SimTime", ref simTime)) return;
@@ -455,6 +456,8 @@ namespace MMBuilder
                 string startWeightsString;
                 string endWeightsString;
                 string dwellWeightsString;
+                int birthProfileTVal = 1;
+                int demandCurveTVal = 1;
 
                 List<string> startPortalIDs = new List<string>();
                 List<string> endPortalIDs = new List<string>();
@@ -553,18 +556,20 @@ namespace MMBuilder
                     _temp.AddDataTypeDistributionAttribute("AttrCirculateEventLifetimeDurationDistribution",
                       "Uniform",
                       SerializeList(new List<double> { dwellTime[0] * 60F, dwellTime[1] * 60F }));
-                    _temp.AddDataTypeDataTypeTimeReferenceAttribute("AttrEventCirculateLifetimeEndTime",
+                    _temp.AddDataTypeDataTypeTimeReferenceAttribute("AttrCirculateEventLifetimeEndTime",
                       "00000000-0000-0000-0000-000000000000",
                       TimeInSeconds(dwellTime[1]));
-                    _temp.AddDataTypeEnumAttribute("AttrCirculateEventLifetimeType", "LifetimeForever", "0");
+                    _temp.AddDataTypeEnumAttribute("AttrCirculateEventLifetimeType", "LifetimeUntilTime", "4");
                     _temp.AddDataTypeBoolAttribute("AttrCirculateEventLifetimeWaitAfterCount", "0");
 
-
+                    birthProfileTVal = 3;
+                    demandCurveTVal = 2;
                 }
+
                 _temp.AddDataTypeBoolAttribute("AttrEnabled", "1");
                 _temp.AddDataTypeActionAttribute("AttrEventBirthAction", "ActionNone");
-                _temp.AddDataTypeAttribute("AttrEventBirthProfile", "00000000-0000-0000-0000-000000000000", "DataTypeGlobalID");
-                _temp.AddDataTypeAttribute("AttrEventDemandCurveData", "[]", "DataTypeVectorDouble");
+                _temp.AddDataTypeAttribute("AttrEventBirthProfile", "00000000-0000-0000-0000-000000000000", "DataTypeGlobalID", birthProfileTVal);
+                _temp.AddDataTypeAttribute("AttrEventDemandCurveData", "[]", "DataTypeVectorDouble", demandCurveTVal);
                 _temp.AddDataTypeEnumAttribute("AttrEventDemandType", "DemandDistribution", "2");
                 _temp.AddDataTypeEnumAttribute("AttrEventDestinationType", "DestinationAssigned", "1");
                 _temp.AddDataTypeDistributionAttribute("AttrEventDurationDistribution",
@@ -1091,6 +1096,22 @@ namespace MMBuilder
         // return the mesh geometry of this object
         public Mesh Mesh { get { return this._msh; } }
 
+        public override void WriteAttributes()
+        {
+            this.Writer.WriteStartElement("Attributes");
+            this.Writer.WriteStartElement("AttrPortalDistribution");
+
+            this.Writer.WriteStartElement("Data");
+            this.WriteProperty("EnumString", "DistributionOnFloorArea", 3);
+            this.WriteProperty("EnumValue", "2", 1);
+            this.Writer.WriteEndElement();
+
+            this.WriteProperty("Type", "DataTypeEnum", 3);
+
+            this.Writer.WriteEndElement();
+            this.Writer.WriteEndElement();
+        }
+
         // Write the body element of this object
         // This currently is not outputting the correct locations for:
         //  - AttrPortalGoalEdgeIndices and
@@ -1234,10 +1255,10 @@ namespace MMBuilder
         /*
          * Mass Motion specific XML types
          */
-        public void AddDataTypeAttribute(string name, string data, string type)
+        public void AddDataTypeAttribute(string name, string data, string type, int t = 1)
         {
             this.AddNestedAttribute(name, new List<List<string>> {
-          new List < string > {"Data", data, "1"},
+          new List < string > {"Data", data, t.ToString()},
           new List < string > {"Type", type, "3"}
           });
         }

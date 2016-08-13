@@ -4,3 +4,5 @@
 - run through and implement all typehints and descriptions
 - clean up codebase and iplement attribute class accross all othe classes
 - fix simType on .mmxml export
+- build profile element
+- clear userstrings
