@@ -1,8 +1,9 @@
 
--bug: links not importing correctly sometimes
+- links not importing correctly sometimes
 - fix dwellType on circulate
 - run through and implement all typehints and descriptions
 - clean up codebase and iplement attribute class accross all othe classes
 - fix simType on .mmxml export
 - build profile element
 - clear userstrings
+- journeys are permanently moving meshes upwards

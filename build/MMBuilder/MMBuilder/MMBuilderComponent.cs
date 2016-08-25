@@ -417,7 +417,16 @@ namespace MMBuilder
 
             double agentNum = 0;
             string name = null;
-            string dwellType = null; // dwellType to be implemented
+            string dwellType = null;
+
+            List<string> dwellTypes = new List<string>()
+            {
+                "Uniform",
+                "Normal",
+                "LogNormal",
+                "Instant"
+            };
+            
 
             Interval simTime = new Interval(0, 0);
             Interval dwellTime = new Interval(0, 0);
@@ -439,11 +448,16 @@ namespace MMBuilder
             DA.GetDataTree("DwellPortals", out dwellPortals);
             DA.GetDataTree("DwellWeights", out dwellWeights);
             DA.GetData("DwellTime", ref dwellTime);
+            DA.GetData("DwellType", ref dwellType);
 
             if (!DA.GetData("AgentNum", ref agentNum)) return;
             if (!DA.GetData("SimTime", ref simTime)) return;
             if (!DA.GetData("Name", ref name)) return;
 
+            if(dwellType == null || dwellTypes.Contains(dwellType))
+            {
+                dwellType = "Uniform";
+            }
 
             if (startPortals.AllData(true).Count() != 0 &&
               endPortals.AllData(true).Count() != 0 &&
@@ -667,7 +681,7 @@ namespace MMBuilder
 
         public Collection() :
             base("MMCollection", "MMCollection",
-                "This component builds Collection objects to be used in OASYS Mass Motion and OASYS flow scenes",
+                "This component builds Collection objects to be used in OASYS Mass Motion and OASYS Flow scenes",
                 "Circulation Analysis", "Mass Motion")
         {
         }
